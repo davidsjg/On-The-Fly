@@ -14,6 +14,7 @@ export const onCreateNote = /* GraphQL */ `
       wingsOut
       wingsDesc
       description
+      image
       createdAt
       updatedAt
       __typename
@@ -33,6 +34,7 @@ export const onUpdateNote = /* GraphQL */ `
       wingsOut
       wingsDesc
       description
+      image
       createdAt
       updatedAt
       __typename
@@ -52,6 +54,7 @@ export const onDeleteNote = /* GraphQL */ `
       wingsOut
       wingsDesc
       description
+      image
       createdAt
       updatedAt
       __typename

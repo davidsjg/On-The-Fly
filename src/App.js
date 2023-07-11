@@ -1,16 +1,17 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
 import "@aws-amplify/ui-react/styles.css";
-import { API } from "aws-amplify";
+import { API, Storage } from 'aws-amplify';
 import {
   Button,
   Flex,
   Heading,
+  Image,
   Text,
   TextField,
   View,
   withAuthenticator,
-} from "@aws-amplify/ui-react";
+} from '@aws-amplify/ui-react';
 import { listNotes } from "./graphql/queries";
 import {
   createNote as createFlyMutation,
@@ -25,15 +26,54 @@ const App = ({ signOut }) => {
     fetchFlies();
   }, []);
 
+  // async function fetchFlies() {
+  //   const apiData = await API.graphql({ query: listNotes });
+  //   const fliesFromAPI = apiData.data.listNotes.items;
+  //   setFlies(fliesFromAPI);
+  // }
+
   async function fetchFlies() {
     const apiData = await API.graphql({ query: listNotes });
     const fliesFromAPI = apiData.data.listNotes.items;
+    await Promise.all(
+      fliesFromAPI.map(async (note) => {
+        if (note.image) {
+          const url = await Storage.get(note.name);
+          note.image = url;
+        }
+        return note;
+      })
+    );
     setFlies(fliesFromAPI);
   }
+
+  // async function createFly(event) {
+  //   event.preventDefault();
+  //   const form = new FormData(event.target);
+  //   const data = {
+  //     name: form.get("name"),
+  //     above: form.get("above"),
+  //     legs: form.get("hasLegs"),
+  //     legsJointed: form.get("legsJointed"),
+  //     tail: form.get("tail"),
+  //     antennae: form.get("antennae"),
+  //     wingsOut: form.get("wingsOut"),
+  //     wingsDesc: form.get("wingsDesc"),
+  //     description: form.get("description")
+  //   };
+  //   console.log(data);
+  //   await API.graphql({
+  //     query: createFlyMutation,
+  //     variables: { input: data },
+  //   });
+  //   fetchFlies();
+  //   event.target.reset();
+  // }
 
   async function createFly(event) {
     event.preventDefault();
     const form = new FormData(event.target);
+    const image = form.get("image");
     const data = {
       name: form.get("name"),
       above: form.get("above"),
@@ -43,9 +83,10 @@ const App = ({ signOut }) => {
       antennae: form.get("antennae"),
       wingsOut: form.get("wingsOut"),
       wingsDesc: form.get("wingsDesc"),
-      description: form.get("description")
+      description: form.get("description"),
+      image: image.name
     };
-    console.log(data);
+    if (!!data.image) await Storage.put(data.name, image);
     await API.graphql({
       query: createFlyMutation,
       variables: { input: data },
@@ -53,10 +94,21 @@ const App = ({ signOut }) => {
     fetchFlies();
     event.target.reset();
   }
+  
 
   async function deleteFly({ id }) {
     const newFlies = flies.filter((fly) => fly.id !== id);
     setFlies(newFlies);
+    await API.graphql({
+      query: deleteFlyMutation,
+      variables: { input: { id } },
+    });
+  }
+
+  async function deleteNote({ id, name }) {
+    const newFlies = flies.filter((fly) => fly.id !== id);
+    setFlies(newFlies);
+    await Storage.remove(name);
     await API.graphql({
       query: deleteFlyMutation,
       variables: { input: { id } },
@@ -76,40 +128,13 @@ const App = ({ signOut }) => {
             variation="quiet"
             required
           />
-          <CheckboxField
-            label="Above Water?"
-            name="above"
-            value="yes"
-          />
-          <CheckboxField
-            label="Has Legs?"
-            name="hasLegs"
-            value="yes"
-          />
-          <CheckboxField
-            label="Legs Jointed?"
-            name="legsJointed"
-            value="yes"
-          />
-          <CheckboxField
-            label="Tail?"
-            name="tail"
-            value="yes"
-          />
-          <CheckboxField
-            label="Antennae?"
-            name="antennae"
-            value="yes"
-          />
-          <CheckboxField
-            label="Wings Out?"
-            name="wingsOut"
-            value="yes"
-          />
-          <RadioGroupField
-            label="Wing Description"
-            name="wingsDesc"
-          >
+          <CheckboxField label="Above Water?" name="above" value="yes" />
+          <CheckboxField label="Has Legs?" name="hasLegs" value="yes" />
+          <CheckboxField label="Legs Jointed?" name="legsJointed" value="yes" />
+          <CheckboxField label="Tail?" name="tail" value="yes" />
+          <CheckboxField label="Antennae?" name="antennae" value="yes" />
+          <CheckboxField label="Wings Out?" name="wingsOut" value="yes" />
+          <RadioGroupField label="Wing Description" name="wingsDesc">
             <Radio value="flat">Flat</Radio>
             <Radio value="tented">Tented</Radio>
             <Radio value="upright">Upright</Radio>
@@ -122,7 +147,12 @@ const App = ({ signOut }) => {
             variation="quiet"
             required
           />
-          
+          <View
+            name="image"
+            as="input"
+            type="file"
+            style={{ alignSelf: "end" }}
+          />
           <Button type="submit" variation="primary">
             Create Fly
           </Button>
@@ -141,6 +171,13 @@ const App = ({ signOut }) => {
               {fly.name}
             </Text>
             <Text as="span">{fly.description}</Text>
+            {fly.image && (
+              <Image
+                src={fly.image}
+                alt={`visual aid for ${flies.name}`}
+                style={{ width: 400 }}
+              />
+            )}
             <Button variation="link" onClick={() => deleteFly(fly)}>
               Delete fly
             </Button>

@@ -14,6 +14,7 @@ export const getNote = /* GraphQL */ `
       wingsOut
       wingsDesc
       description
+      image
       createdAt
       updatedAt
       __typename
@@ -38,6 +39,7 @@ export const listNotes = /* GraphQL */ `
         wingsOut
         wingsDesc
         description
+        image
         createdAt
         updatedAt
         __typename
