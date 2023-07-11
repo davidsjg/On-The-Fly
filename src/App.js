@@ -56,7 +56,8 @@ const App = ({ signOut }) => {
       wingsDesc: form.get("wingsDesc"),
       imitates: form.get("imitates"),
       image: image.name,
-      size: form.get("size")
+      size: form.get("size"),
+      category: form.get("category")
     };
     if (!!data.image) await Storage.put(data.name, image);
     await API.graphql({
@@ -66,18 +67,8 @@ const App = ({ signOut }) => {
     fetchFlies();
     event.target.reset();
   }
-  
 
-  async function deleteFly({ id }) {
-    const newFlies = flies.filter((fly) => fly.id !== id);
-    setFlies(newFlies);
-    await API.graphql({
-      query: deleteFlyMutation,
-      variables: { input: { id } },
-    });
-  }
-
-  async function deleteNote({ id, name }) {
+  async function deleteFly({ id, name }) {
     const newFlies = flies.filter((fly) => fly.id !== id);
     setFlies(newFlies);
     await Storage.remove(name);
@@ -117,7 +108,6 @@ const App = ({ signOut }) => {
             label="Fly Imitation"
             labelHidden
             variation="quiet"
-            required
           />
           <TextField
             name="size"
@@ -125,7 +115,6 @@ const App = ({ signOut }) => {
             label="Fly Size"
             labelHidden
             variation="quiet"
-            required
           />
           <View
             name="image"
@@ -133,6 +122,12 @@ const App = ({ signOut }) => {
             type="file"
             style={{ alignSelf: "end" }}
           />
+          <RadioGroupField label="Fly Category" name="category">
+            <Radio value="Midge">Midge</Radio>
+            <Radio value="Mayfly">Mayfly</Radio>
+            <Radio value="Caddis">Caddis</Radio>
+            <Radio value="Stonefly">Stonefly</Radio>
+          </RadioGroupField>
           <Button type="submit" variation="primary">
             Create Fly
           </Button>
@@ -143,27 +138,35 @@ const App = ({ signOut }) => {
         {flies.map((fly) => (
           <Flex
             key={fly.id || fly.name}
-            direction="row"
+            direction="column"
             justifyContent="center"
             alignItems="center"
           >
-            <Text as="strong" fontWeight={700}>
-              {fly.name}
-            </Text>
-            <Text as="span">{fly.imitates}</Text>
             {fly.image && (
               <Image
                 src={fly.image}
                 alt={`visual aid for ${flies.name}`}
                 style={{ width: 400 }}
-              />
+              />       
             )}
             <Text as="strong" fontWeight={700}>
-              Size: {fly.size}
+              {fly.name}
             </Text>
+            <Text as="span">{fly.imitates}</Text>
+            { fly.size > 0 &&
+            <Text as="strong" fontWeight={700}>
+            Size: {fly.size}
+            </Text>              
+            }
+            <Text as="strong" >
+            Category: {fly.category}
+            </Text>  
             <Button variation="link" onClick={() => deleteFly(fly)}>
               Delete fly
             </Button>
+            <>
+              --------------------------------------------------------
+            </>
           </Flex>
         ))}
       </View>

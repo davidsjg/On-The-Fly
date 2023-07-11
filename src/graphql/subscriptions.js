@@ -16,6 +16,7 @@ export const onCreateNote = /* GraphQL */ `
       imitates
       image
       size
+      category
       createdAt
       updatedAt
       __typename
@@ -37,6 +38,7 @@ export const onUpdateNote = /* GraphQL */ `
       imitates
       image
       size
+      category
       createdAt
       updatedAt
       __typename
@@ -58,6 +60,7 @@ export const onDeleteNote = /* GraphQL */ `
       imitates
       image
       size
+      category
       createdAt
       updatedAt
       __typename
