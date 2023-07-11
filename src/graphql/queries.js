@@ -13,8 +13,9 @@ export const getNote = /* GraphQL */ `
       antennae
       wingsOut
       wingsDesc
-      description
+      imitates
       image
+      size
       createdAt
       updatedAt
       __typename
@@ -38,8 +39,9 @@ export const listNotes = /* GraphQL */ `
         antennae
         wingsOut
         wingsDesc
-        description
+        imitates
         image
+        size
         createdAt
         updatedAt
         __typename

@@ -26,12 +26,6 @@ const App = ({ signOut }) => {
     fetchFlies();
   }, []);
 
-  // async function fetchFlies() {
-  //   const apiData = await API.graphql({ query: listNotes });
-  //   const fliesFromAPI = apiData.data.listNotes.items;
-  //   setFlies(fliesFromAPI);
-  // }
-
   async function fetchFlies() {
     const apiData = await API.graphql({ query: listNotes });
     const fliesFromAPI = apiData.data.listNotes.items;
@@ -47,29 +41,6 @@ const App = ({ signOut }) => {
     setFlies(fliesFromAPI);
   }
 
-  // async function createFly(event) {
-  //   event.preventDefault();
-  //   const form = new FormData(event.target);
-  //   const data = {
-  //     name: form.get("name"),
-  //     above: form.get("above"),
-  //     legs: form.get("hasLegs"),
-  //     legsJointed: form.get("legsJointed"),
-  //     tail: form.get("tail"),
-  //     antennae: form.get("antennae"),
-  //     wingsOut: form.get("wingsOut"),
-  //     wingsDesc: form.get("wingsDesc"),
-  //     description: form.get("description")
-  //   };
-  //   console.log(data);
-  //   await API.graphql({
-  //     query: createFlyMutation,
-  //     variables: { input: data },
-  //   });
-  //   fetchFlies();
-  //   event.target.reset();
-  // }
-
   async function createFly(event) {
     event.preventDefault();
     const form = new FormData(event.target);
@@ -83,8 +54,9 @@ const App = ({ signOut }) => {
       antennae: form.get("antennae"),
       wingsOut: form.get("wingsOut"),
       wingsDesc: form.get("wingsDesc"),
-      description: form.get("description"),
-      image: image.name
+      imitates: form.get("imitates"),
+      image: image.name,
+      size: form.get("size")
     };
     if (!!data.image) await Storage.put(data.name, image);
     await API.graphql({
@@ -140,9 +112,17 @@ const App = ({ signOut }) => {
             <Radio value="upright">Upright</Radio>
           </RadioGroupField>
           <TextField
-            name="description"
-            placeholder="Fly Description"
-            label="Fly Description"
+            name="imitates"
+            placeholder="Imitates what?"
+            label="Fly Imitation"
+            labelHidden
+            variation="quiet"
+            required
+          />
+          <TextField
+            name="size"
+            placeholder="Fly Size"
+            label="Fly Size"
             labelHidden
             variation="quiet"
             required
@@ -170,7 +150,7 @@ const App = ({ signOut }) => {
             <Text as="strong" fontWeight={700}>
               {fly.name}
             </Text>
-            <Text as="span">{fly.description}</Text>
+            <Text as="span">{fly.imitates}</Text>
             {fly.image && (
               <Image
                 src={fly.image}
@@ -178,6 +158,9 @@ const App = ({ signOut }) => {
                 style={{ width: 400 }}
               />
             )}
+            <Text as="strong" fontWeight={700}>
+              Size: {fly.size}
+            </Text>
             <Button variation="link" onClick={() => deleteFly(fly)}>
               Delete fly
             </Button>

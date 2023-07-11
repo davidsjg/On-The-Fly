@@ -12,6 +12,7 @@ type Note @model @auth(rules: [ { allow: public } ] ){
   antennae: Boolean
   wingsOut: Boolean
   wingsDesc: String
-  description: String
+  imitates: String
   image: String
+  size: String
 }
