@@ -13,15 +13,19 @@ const [button2, setButton2] = useState(false);
 //const [above, setAbove] = useState(false);
 
 //const butt1 = false;
-let count = 0;
+let myCount = 0;
 let above = false;
+let outToSide = false;
+let overBack = false;
+let flat = false;
+let tented = false;
+let upright = false;
 
 
 useEffect(() => {
     fetchFlies();
   }, []);
 
-const questions = ['Was the bug above or below water?', 'are you furreal?'];
 
 async function fetchFlies() {
     const apiData = await API.graphql({ query: listNotes });
@@ -39,36 +43,76 @@ async function fetchFlies() {
   }
 
   function updateCounter(e){
-    console.log(counter);
-    console.log(e);
     if(e === 'but1'){
         butt1();
-    } else {
+    } else if (e === 'but2') {
         butt2();
+    } else {
+        butt3();
     }
   }
 
   function butt1(){
-    if(count === 0){
+    if(counter === 0){
         above = true;
+        console.log('above');
         setCounter(1);
-        console.log(above);
     }
+    if(counter === 1){
+        outToSide = true;
+        console.log('out to side')
+        setCounter(100)   //end
+    }
+    if(counter === 2){
+        flat = true;
+        console.log('out to side')
+        setCounter(100)   //end
+    }
+    
+
+    //updateCount();
   }
 
   function butt2(){
-    if(count === 0){
-        above = true;
+    if(counter === 0){
+        //indicates bug is below surface
+        above = false;
         setCounter(1);
+        console.log(above);
+    }
+    if(counter === 1){
+        overBack = true;
+        console.log('over back')
+        setCounter(2)   //end
+    }
+    if(counter === 2){
+        tented = true;
+        console.log('tented')
+        setCounter(100)   //end
+    }
+
+  }
+
+  function butt3(){
+    if(counter === 2){
+        console.log('inside butt3');
+        console.log('upright');
+        upright = true;
+        setCounter(100);
         console.log(above);
     }
   }
 
+  //if bugsArray state = 100, show all the flies with imitates != null
 
 
 return  (
 
 <div className={styles["mainContain"]}>
+
+    {}
+
+
     {counter === 0 &&
         <div className={styles["leftHeader"]}>
             <div className={styles["navMenu"]}>
@@ -90,6 +134,13 @@ return  (
             </div>
         </div>
     }
+    {counter === 3 &&
+        <div className={styles["leftHeader"]}>
+            <div className={styles["navMenu"]}>
+                    How do the wings lay?
+            </div>
+        </div>
+    }
     {counter === 100 &&
         <div className={styles["leftHeader"]}>
             <div className={styles["navMenu"]}>
@@ -100,24 +151,40 @@ return  (
 
 
     <div className={styles["centerContain"]}>
-        <div className={styles["centerHeader"]}>
-            <div className={styles["centerHeader2"]}>
-                <button className={styles["navMenu"]} onClick={() => updateCounter('but1')}>
-                
-                        BUG ID PAGE
-                
-                </button>
-            </div>
-        </div>
-        <div className={styles["centerHeader"]}>
-            <div className={styles["centerHeader2"]}>
-                <button className={styles["navMenu"]} onClick={() => updateCounter('but2')}>
-                
-                        BUG ID PAGE
-                
-                </button>
-            </div>
-        </div>
+        {counter === 0 &&
+        <>
+            <button className={styles["navMenu"]} onClick={() => updateCounter('but1')}>  
+                Above
+            </button>
+            <button className={styles["navMenu"]} onClick={() => updateCounter('but2')}>
+                Below      
+            </button>
+        </>
+        }
+        {counter === 1 &&
+        <>
+            <button className={styles["navMenu"]} onClick={() => updateCounter('but1')}>  
+                Out to Side
+            </button>
+            <button className={styles["navMenu"]} onClick={() => updateCounter('but2')}>
+                Over Back      
+            </button>
+        </>
+        }
+        {counter === 2 &&
+        <>
+            <button className={styles["navMenu"]} onClick={() => updateCounter('but1')}>  
+                Flat over back
+            </button>
+            <button className={styles["navMenu"]} onClick={() => updateCounter('but2')}>
+                Tented over back    
+            </button>
+            <button className={styles["navMenu"]} onClick={() => updateCounter('but3')}>  
+                Upright (sailboat)
+            </button>
+        </>
+        }
+
     </div>
 
     <div className={styles["rightHeader"]}>
