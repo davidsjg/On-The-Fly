@@ -10,21 +10,29 @@ const [counter, setCounter] = useState(0);
 const [flies, setFlies] = useState();
 const [button1, setButton1] = useState(false);
 const [button2, setButton2] = useState(false);
-//const [above, setAbove] = useState(false);
+const [myAbove, setMyAbove] = useState(false);
+const [out2Side, setOut2Side] = useState(false);
+const [flat, setFlat] = useState(false);
+const [legs, setLegs] = useState(false);
+const [overBack, setOverBack] = useState(false);
+const [tented, setTented] = useState(false);
+const [upright, setUpright] = useState(false);
+const [joints, setJoints] = useState(false);
+const [tail, setTail] = useState(false);
+const [antennae, setAntennae] = useState(false);
 
-//const butt1 = false;
+const [flyData, setFlyData] = useState({ above: false, wingsOut : false, flat: false, overBack : false, tented : false, upright: false, legs : false, joints : false, tail : true, antennae : false  });
+
+
 let myCount = 0;
 let above = false;
 let outToSide = false;
-let overBack = false;
-let flat = false;
-let tented = false;
-let upright = false;
 
 
 useEffect(() => {
     fetchFlies();
-  }, []);
+    setData();
+  }, [flyData]);
 
 
 async function fetchFlies() {
@@ -52,54 +60,146 @@ async function fetchFlies() {
     }
   }
 
-  function butt1(){
-    if(counter === 0){
-        above = true;
-        console.log('above');
-        setCounter(1);
-    }
-    if(counter === 1){
-        outToSide = true;
-        console.log('out to side')
-        setCounter(100)   //end
-    }
-    if(counter === 2){
-        flat = true;
-        console.log('out to side')
-        setCounter(100)   //end
-    }
-    
+  function setData(){
 
-    //updateCount();
+     conIt(flyData);
+
   }
 
+  function conIt(fly){
+    console.log(fly);
+  }
+
+  function butt1(){
+
+    switch (counter) {
+        case 0:
+            console.log('above');
+            setFlyData({
+                ...flyData,
+                above : true
+            })
+            setCounter(1);
+          break;
+        case 1:
+            console.log('out to side')
+            setFlyData({
+                ...flyData,
+                wingsOut : true
+            })
+            setCounter(100)   //end
+          break;
+        case 2:
+            console.log('flat')
+            setFlyData({
+                ...flyData,
+                flat : true
+            })
+            setCounter(100)   //end
+            setData();
+          break;
+        case 3:
+            console.log('has legs')
+            setFlyData({
+                ...flyData,
+                legs : true
+            })
+            setCounter(4)   //end
+          break;
+        case 4:
+            console.log('has joints')
+            setFlyData({
+                ...flyData,
+                joints : true
+            })
+            setCounter(5)   //end
+          break;
+        case 5:
+            console.log('has tail')
+            setFlyData({
+                ...flyData,
+                tail : true
+            })
+            setCounter(6)   //end
+          break;
+        case 6:
+            console.log('has antennae')
+            setFlyData({
+                ...flyData,
+                antennae : true
+            })
+            setCounter(100)   //end
+            setData();
+          break;
+        case 100:
+            setData();
+          break;
+        default:
+            console.log('default switch')
+            break;
+      }
+
+  }
+  
+
   function butt2(){
-    if(counter === 0){
-        //indicates bug is below surface
-        above = false;
-        setCounter(1);
-        console.log(above);
-    }
-    if(counter === 1){
-        overBack = true;
-        console.log('over back')
-        setCounter(2)   //end
-    }
-    if(counter === 2){
-        tented = true;
-        console.log('tented')
-        setCounter(100)   //end
-    }
+
+    switch (counter) {
+        case 0:
+            setCounter(3);
+            console.log(above);
+          break;
+        case 1:
+            console.log('over back')
+            setFlyData({
+                ...flyData,
+                overBack : true
+            })
+            setCounter(2)   
+          break;
+        case 2:
+            console.log('tented')
+            setFlyData({
+                ...flyData,
+                tented : true
+            })
+            setCounter(100)   //end
+            setData();
+          break;
+        case 3:
+            console.log('no legs')
+            setCounter(100)   //end
+            setData();
+          break;
+        case 4:
+            console.log('no joints')
+            setCounter(5)   
+          break;
+        case 5:
+            console.log('no tail')
+            setCounter(6)   
+          break;
+        case 6:
+            console.log('no antennae')
+            setCounter(100)   //end
+            setData();
+          break;
+        case 100:
+            setData();
+          break;
+        default:
+            console.log('default switch')
+            break;
+      }
 
   }
 
   function butt3(){
     if(counter === 2){
-        console.log('inside butt3');
         console.log('upright');
-        upright = true;
+        setUpright(true);
         setCounter(100);
-        console.log(above);
+        setData();
     }
   }
 
@@ -137,7 +237,28 @@ return  (
     {counter === 3 &&
         <div className={styles["leftHeader"]}>
             <div className={styles["navMenu"]}>
-                    How do the wings lay?
+                    Does it have legs?
+            </div>
+        </div>
+    }
+    {counter === 4 &&
+        <div className={styles["leftHeader"]}>
+            <div className={styles["navMenu"]}>
+                    What type of legs does it have?
+            </div>
+        </div>
+    }
+    {counter === 5 &&
+        <div className={styles["leftHeader"]}>
+            <div className={styles["navMenu"]}>
+                    Does it have a tail?
+            </div>
+        </div>
+    }
+    {counter === 6 &&
+        <div className={styles["leftHeader"]}>
+            <div className={styles["navMenu"]}>
+                    Does it have an antennae?
             </div>
         </div>
     }
@@ -184,6 +305,46 @@ return  (
             </button>
         </>
         }
+        {counter === 3 &&
+        <>
+            <button className={styles["navMenu"]} onClick={() => updateCounter('but1')}>  
+                Has Legs
+            </button>
+            <button className={styles["navMenu"]} onClick={() => updateCounter('but2')}>
+                No Legs   
+            </button>
+        </>
+        }
+        {counter === 4 &&
+        <>
+            <button className={styles["navMenu"]} onClick={() => updateCounter('but1')}>  
+                Has Joints
+            </button>
+            <button className={styles["navMenu"]} onClick={() => updateCounter('but2')}>
+                No Joints   
+            </button>
+        </>
+        }
+        {counter === 5 &&
+        <>
+            <button className={styles["navMenu"]} onClick={() => updateCounter('but1')}>  
+                Has Tail
+            </button>
+            <button className={styles["navMenu"]} onClick={() => updateCounter('but2')}>
+                No Tail   
+            </button>
+        </>
+        }
+        {counter === 6 &&
+        <>
+            <button className={styles["navMenu"]} onClick={() => updateCounter('but1')}>  
+                Has Antennae
+            </button>
+            <button className={styles["navMenu"]} onClick={() => updateCounter('but2')}>
+                No Antennae   
+            </button>
+        </>
+        }
 
     </div>
 
@@ -198,3 +359,9 @@ return  (
 }
 
 export default BugId;
+
+
+
+//create 5 data flies, with one fly being the answer to current and prev questions
+//keep sorting array based on data that matches bugs, incrementally
+//have one bug object and compare and sort against it as it updates with user answers
