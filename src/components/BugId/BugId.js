@@ -10,6 +10,12 @@ const [counter, setCounter] = useState(0);
 const [flies, setFlies] = useState();
 const [button1, setButton1] = useState(false);
 const [button2, setButton2] = useState(false);
+//const [above, setAbove] = useState(false);
+
+//const butt1 = false;
+let count = 0;
+let above = false;
+
 
 useEffect(() => {
     fetchFlies();
@@ -33,15 +39,28 @@ async function fetchFlies() {
   }
 
   function updateCounter(e){
+    console.log(counter);
     console.log(e);
-    setButton1(true);
-    if(counter === 0){
-        
+    if(e === 'but1'){
+        butt1();
+    } else {
+        butt2();
     }
+  }
 
+  function butt1(){
+    if(count === 0){
+        above = true;
+        setCounter(1);
+        console.log(above);
+    }
+  }
 
-    if(counter + 1 > questions.length){
-        setCounter(100);
+  function butt2(){
+    if(count === 0){
+        above = true;
+        setCounter(1);
+        console.log(above);
     }
   }
 
