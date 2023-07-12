@@ -3,6 +3,15 @@ import { Link } from 'react-router-dom';
 import styles from "./BugId.module.css";
 import { API, Storage } from 'aws-amplify';
 import { listNotes } from '../../graphql/queries';
+import {
+    Button,
+    Flex,
+    Heading,
+    Image,
+    Text,
+    TextField,
+    View
+  } from '@aws-amplify/ui-react';
 
 function BugId() {
 
@@ -20,6 +29,7 @@ const [upright, setUpright] = useState(false);
 const [joints, setJoints] = useState(false);
 const [tail, setTail] = useState(false);
 const [antennae, setAntennae] = useState(false);
+const [curFlies, setCurFlies] = useState(flies)
 
 const [flyData, setFlyData] = useState({ above: false, wingsOut : false, flat: false, overBack : false, tented : false, upright: false, legs : false, joints : false, tail : true, antennae : false  });
 
@@ -28,12 +38,29 @@ let myCount = 0;
 let above = false;
 let outToSide = false;
 
-
 useEffect(() => {
     fetchFlies();
+    console.log(flies);
+  }, []);
+
+
+useEffect(() => {
     setData();
+    calcFlies();
   }, [flyData]);
 
+function calcFlies(){
+   // const newFlies = flies.filter((fly) => fly.id !== id);
+    //have all the flies
+    //have a fly to compare it against
+
+    if(flyData.above === true) {
+        console.log(flies);
+        const newFlies = flies.filter((fly) => fly.above === false);
+        console.log(newFlies);
+        setFlies(newFlies);
+    }
+}
 
 async function fetchFlies() {
     const apiData = await API.graphql({ query: listNotes });
@@ -354,6 +381,40 @@ return  (
        
         </div>
     </div>
+    <View margin="3rem 0">
+        {flies && 
+        flies.map((fly) => (
+          <Flex
+            key={fly.id || fly.name}
+            direction="row"
+            // justifyContent="center"
+            // alignItems="center"
+          >
+            {fly.image && (
+              <Image
+                src={fly.image}
+                alt={`visual aid for ${flies.name}`}
+                style={{ width: 400 }}
+              />       
+            )}
+            <Text as="strong" fontWeight={700}>
+              {fly.name}
+            </Text>
+            <Text as="span">{fly.imitates}</Text>
+            { fly.size > 0 &&
+            <Text as="strong" fontWeight={700}>
+            Size: {fly.size}
+            </Text>              
+            }
+            <Text as="strong" >
+            Category: {fly.category}
+            </Text>  
+            <>
+              --------------------------------------------------------
+            </>
+          </Flex>
+        ))}
+    </View>
 </div>
 );
 }
