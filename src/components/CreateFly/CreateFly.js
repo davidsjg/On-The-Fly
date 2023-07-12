@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "./CreateFly.module.css";
+import "./CreateFly.css";
 import "@aws-amplify/ui-react/styles.css";
 import { API, Storage } from 'aws-amplify';
 import {
@@ -9,8 +9,7 @@ import {
   Image,
   Text,
   TextField,
-  View,
-  withAuthenticator,
+  View
 } from '@aws-amplify/ui-react';
 import { listNotes } from "../../graphql/queries";
 import {
@@ -84,7 +83,7 @@ function CreateFly () {
     <View className="App">
       <Heading level={1}>On The Fly!</Heading>
       <View as="form" margin="3rem 0" onSubmit={createFly}>
-        <Flex direction="row" justifyContent="center">
+        <Flex className="mainFlex">
           <TextField
             name="name"
             placeholder="Fly Name"
@@ -92,6 +91,7 @@ function CreateFly () {
             labelHidden
             variation="quiet"
             required
+            className="flyText"
           />
           <CheckboxField label="Above Water?" name="above" value="yes" />
           <CheckboxField label="Has Legs?" name="hasLegs" value="yes" />
@@ -99,7 +99,7 @@ function CreateFly () {
           <CheckboxField label="Tail?" name="tail" value="yes" />
           <CheckboxField label="Antennae?" name="antennae" value="yes" />
           <CheckboxField label="Wings Out?" name="wingsOut" value="yes" />
-          <RadioGroupField label="Wing Description" name="wingsDesc">
+          <RadioGroupField label="Wing Description" name="wingsDesc" className="wingDesc">
             <Radio value="flat">Flat</Radio>
             <Radio value="tented">Tented</Radio>
             <Radio value="upright">Upright</Radio>
@@ -110,6 +110,7 @@ function CreateFly () {
             label="Fly Imitation"
             labelHidden
             variation="quiet"
+            className="flyText"
           />
           <TextField
             name="size"
@@ -117,12 +118,14 @@ function CreateFly () {
             label="Fly Size"
             labelHidden
             variation="quiet"
+            className="flyText"
           />
           <View
             name="image"
             as="input"
             type="file"
-            style={{ alignSelf: "end" }}
+            // style={{ alignSelf: "end" }}
+            className="imageUp"
           />
           <RadioGroupField label="Fly Category" name="category">
             <Radio value="Midge">Midge</Radio>
@@ -130,12 +133,16 @@ function CreateFly () {
             <Radio value="Caddis">Caddis</Radio>
             <Radio value="Stonefly">Stonefly</Radio>
           </RadioGroupField>
-          <Button type="submit" variation="primary">
-            Create Fly
-          </Button>
+          <button type="submit"className="submitButton">
+              Create Fly
+          </button>
         </Flex>
       </View>
-      <Heading level={2}>Current Flies</Heading>
+      <Heading level={2}  >
+        <div className="bugsNflies">
+        Current Bugs and Flies         
+        </div>
+      </Heading>
       <View margin="3rem 0">
         {flies.map((fly) => (
           <Flex
@@ -178,3 +185,25 @@ function CreateFly () {
 };
 
 export default CreateFly;
+
+//basically want to do a slide show of questions
+//first question pops up "Above or Below Water?" with 2 buttons(Above/Below)
+//user selects one, buttons disappear, next buttons come in
+//onClick = make the buttons disappear or replace it with a different component
+//do a conditional renter based on true/false
+//when they click to answer the first question, set it to false and have the other component render
+//when you set it to false, have it call a function with a timer, sets it to false, then sets it back to true after __ seconds
+//buttons fade back in
+//simultaneously, have all the 2-pair questions in an object or array
+//with each button click to answer a question, increment a state
+//display the array at position state index
+
+//could also use the counter state and do conditional rendering based on what that state is
+//if state.counter=1, display first question with set of buttons
+//if state.counter=2, display second question with set of buttons
+//this may be better as it's more instantaneous
+//can also factor in other conditions when rendering based on previous questions' answers (if you can collect them on the fly...pun intended doosh)
+//might have to separately collect each on each button click, then see if the FormData still makes a nice object too
+//call a different function and pass (event), get what you need off of it and store it in a context state object
+
+//dank

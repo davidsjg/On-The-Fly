@@ -1,0 +1,67 @@
+.mainContain {
+    /* display: flex; */
+    
+    /* flex-direction: column; */
+    /* margin: auto; */
+    /* padding-bottom: 20px; */
+  }
+  
+  .allButtons {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin: 20px;
+  }
+  .allButtons a {
+    text-decoration: none;
+    color: black;
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .selectButton {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #5cb9ff;
+    padding: 15px 20px;
+    margin: 0 2px;
+    border-radius: 10px;
+    cursor: pointer;
+    width: 200px;
+    height: 50px;
+    box-shadow: rgb(0 0 0 / 12%) 0px 26px 30px -10px,
+      rgb(0 0 0 / 73%) 0px 16px 10px -10px;
+      margin: 0 50px;
+
+  }
+  
+  .selectButton p {
+    margin: 0;
+    transition: 250ms;
+  }
+  
+  .selectButton p:hover {
+    transform: scale(1.2);
+  }
+  
+  .selectButton2 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: green;
+    padding: 15px 40px;
+    margin: 0 2px;
+    border-radius: 2px;
+    cursor: pointer;
+    width: 90px;
+    height: 10px;
+    box-shadow: rgb(0 0 0 / 12%) 0px 26px 30px -10px,
+      rgb(0 0 0 / 73%) 0px 16px 10px -10px;
+  }
+  

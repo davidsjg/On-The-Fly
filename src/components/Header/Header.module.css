@@ -1,4 +1,4 @@
-.mainContain{
+/* .mainContain{
     display: flex;
     align-items: center;
     justify-content: space-evenly;
@@ -11,9 +11,81 @@
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-}
+} */
+
+.mainContain {
+    background-image: url("https://i.imgur.com/F8rM7TJ.jpg");
+    opacity: 0.75;
+    background-size: cover ;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    height: 150px;
+    margin: 10px;
+    box-shadow: 0 5px 4px rgba(0, 0, 0, 0.4);
+    border-radius: 2px;
+    border: 1px solid black;
+  }
 
 .spanStyle {
-    color: darkgreen;
+    color: black;
     text-decoration: none;
+    font-size: larger;
+    font-weight: 700;
+    background-color: #eb97a9;
+    border-radius: 10px;
+    padding: 15px;
 }
+
+.leftHeader {
+    flex: 0.2;
+    text-align: center;
+  }
+  
+  .leftLink i {
+    color: black;
+    size-adjust: 120%;
+  }
+
+  .centerHeader {
+    flex: 0.6;
+    text-align: center;
+  }
+  
+  .centerHeader a {
+    text-decoration: none;
+    color: black;
+  }
+
+  .rightHeader {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    flex: 0.2;
+    text-align: center;
+  }
+  
+  .rightHeader a {
+    text-decoration: none;
+    color: black;
+  }
+  
+  .otf{
+    width: fit-content;
+    background-color: white;
+    text-align: center;
+    font-size: xx-large;
+    padding: 10px;
+    border-radius: 10px;
+  }
+
+  .otfImage{
+    width: 200px;
+    border-radius: 40px;
+    box-shadow: rgb(0 0 0 / 12%) 0px 26px 30px -10px,
+    rgb(0 0 0 / 73%) 0px 16px 10px -10px;
+    
+  }

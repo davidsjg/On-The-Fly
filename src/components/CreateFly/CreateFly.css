@@ -1,0 +1,66 @@
+  /* display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center; */
+
+.bugsNflies {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+ } 
+
+ .sliderImg {
+   background-position: center;
+   background-repeat: no-repeat;
+   background-size: cover;
+ }
+ 
+ .submitButton {
+
+   /* opacity: 0.35; */
+   border-radius: 2px;
+   border-width: 1px;
+   padding: 60px 28px;
+   transition-duration: 167ms;
+   text-align: center;
+   width: min-content;
+   margin: 10px 35px;
+   align-self: center;
+   background-color: darkorange;
+ }
+
+ .submitButton:hover{
+   background-color: darkblue;
+   color: white;
+   box-shadow: inset 0 0 0 5px grey;
+   border-radius: 10px;
+   border-color: grey;
+}
+
+.mainFlex{
+   display: flex !important;
+   flex-direction: column !important;
+   justify-content: space-evenly !important;
+   align-items: center !important;
+   background-color: lightblue !important;
+}
+
+.flyText{
+   text-align: center !important;
+}
+
+.wingDesc{
+   display: flex !important;
+   flex-direction: column !important;
+   justify-content: space-evenly !important;
+   align-items:first baseline !important;
+}
+
+.imageUp{
+   display: flex !important;
+   flex-direction: column !important;
+   justify-content: center !important;
+   align-items: end !important;
+   /* background-color: red; */
+}

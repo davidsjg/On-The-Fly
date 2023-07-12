@@ -7,8 +7,8 @@ function Header() {
 return  (
 
 <div className={styles["mainContain"]}>
-    <div className={styles["leftHeader"]}>
-        <div className={styles["navMenu"]}>
+    {/* <div className={styles["leftHeader"]}>
+        <div className={styles["leftLink"]}>
           
                 <Link
                 to="/bugId"
@@ -18,22 +18,26 @@ return  (
                 </Link>
        
         </div>
-    </div>
+    </div> */}
 
     <div className={styles["centerHeader"]}>
         <div className={styles["centerHeader2"]}>
             <div className={styles["navMenu"]}>
             
-                    <Link to="/" style={{ color: "darkgreen", textDecoration: "none" }}>
-                        <span style={{ fontSize: "larger" }}>
-                        On The Fly!
-                        </span>
+                    <Link to="/" >
+                        {/* <span className={styles['otf']}>
+                            <h1 className={styles['otf']} >
+                                On The Fly!
+                            </h1>
+                        </span> */}
+                        <img src='https://i.imgur.com/VZ8RA0o.png' className={styles['otfImage']}>
+                            </img> 
                     </Link>
                
             </div>
         </div>
     </div>
-
+{/* 
     <div className={styles["rightHeader"]}>
         <div className={styles["navMenu"]}>
      
@@ -45,7 +49,7 @@ return  (
                 </Link>
        
         </div>
-    </div>
+    </div> */}
 </div>
 );
 }

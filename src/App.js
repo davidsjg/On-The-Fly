@@ -6,12 +6,14 @@ import HomePage from "./components/HomePage/HomePage";
 import BugId from "./components/BugId/BugId";
 import BugDetail from "./components/BugDetail/BugDetail";
 import Header from "./components/Header/Header"
+import SelectButtons from "./components/SelectButtons/SelectButtons";
 
 
 function App() {
 return (
   <div className="container-fluid">
     <Header/>
+    <SelectButtons/>
     <Routes>
       <Route path="/" exact Component={HomePage}/>
       <Route path="/createFly" Component={CreateFly}/>
