@@ -31,7 +31,7 @@ const [tail, setTail] = useState(false);
 const [antennae, setAntennae] = useState(false);
 const [curFlies, setCurFlies] = useState(flies)
 
-const [flyData, setFlyData] = useState({ above: false, wingsOut : false, flat: false, overBack : false, tented : false, upright: false, legs : false, joints : false, tail : true, antennae : false  });
+const [flyData, setFlyData] = useState({ above: false, wingsOut : false, flat: false, wingsDesc: '', overBack : false, tented : false, upright: false, legs : false, joints : false, tail : true, antennae : false  });
 
 
 let myCount = 0;
@@ -55,11 +55,38 @@ function calcFlies(){
     //have a fly to compare it against
 
     if(flyData.above === true) {
-        console.log(flies);
         const newFlies = flies.filter((fly) => fly.above === false);
-        console.log(newFlies);
         setFlies(newFlies);
+        if(flyData.overBack === true){
+            if(flyData.flat === true){
+                const newFlies2 = flies.filter((fly) => fly.wingsDesc === 'flat');
+                setFlies(newFlies2);
+            } 
+            if (flyData.upright === true){
+                const newFlies2 = flies.filter((fly) => fly.wingsDesc === 'upright');
+                setFlies(newFlies2);
+            } 
+            if (flyData.tented === true){
+                const newFlies2 = flies.filter((fly) => fly.wingsDesc === 'tented');
+                setFlies(newFlies2);
+            }
+        }
     }
+    if(flyData.wingsOut === true){
+        const newFlies2 = flies.filter((fly) => fly.wingsOut === false);
+        setFlies(newFlies2);
+    } 
+    if(flyData.overBack === true){
+
+
+    } 
+
+
+
+    // if(flyData.wingsOut === false){
+    //     const newFlies = flies.filter((fly) => fly.wingsOut === true);
+    //     setFlies(newFlies);
+    // }
 }
 
 async function fetchFlies() {
@@ -224,7 +251,10 @@ async function fetchFlies() {
   function butt3(){
     if(counter === 2){
         console.log('upright');
-        setUpright(true);
+        setFlyData({
+            ...flyData,
+            upright : true
+        })        
         setCounter(100);
         setData();
     }
@@ -408,6 +438,12 @@ return  (
             }
             <Text as="strong" >
             Category: {fly.category}
+            </Text>  
+            <Text as="strong" >
+            Category: {fly.wingsOut}
+            </Text>  
+            <Text as="strong" >
+            wingDesc: {fly.wingsDesc}
             </Text>  
             <>
               --------------------------------------------------------
