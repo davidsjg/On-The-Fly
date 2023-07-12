@@ -1,0 +1,22 @@
+.mainContain{
+    display: flex;
+    flex-direction: column;
+    /* justify-content: space-evenly; */
+    align-items: center;
+    height: 700px;
+}
+
+.centerContain{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 200px;
+    width: 500px;
+    border-width: 100px;
+    border-color: black;
+}
+
+.navMenu{
+    margin: 20px 0px;
+}

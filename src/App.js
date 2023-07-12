@@ -7,11 +7,11 @@ import BugId from "./components/BugId/BugId";
 import BugDetail from "./components/BugDetail/BugDetail";
 import Header from "./components/Header/Header"
 import SelectButtons from "./components/SelectButtons/SelectButtons";
-
+import styles from "./App.module.css";
 
 function App() {
 return (
-  <div className="container-fluid">
+  <div className={styles["appContain"]}>
     <Header/>
     <SelectButtons/>
     <Routes>

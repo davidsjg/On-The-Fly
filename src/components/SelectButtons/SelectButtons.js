@@ -5,26 +5,28 @@ import { Link, Outlet, useParams } from "react-router-dom";
 
 function SelectButtons() {
   const currParam = useParams();
-  const currUrl = window.location.pathname;
+  let currUrl = window.location.pathname;
 
   const [uploadHike, setUploadHike] = useState(false);
   const [explore, setExplore] = useState(false);
   const [myHikes, setMyHikes] = useState(false);
+
+  const [urlChange, setUrlChange] = useState(false);
 
   const uploadHikeSelected = "";
   const exploreSelected = "";
   const myHikesSelected = !myHikes ? styles.myHikesOut : "";
 
   useEffect(() => {
-    if (currUrl === "/uploadHike") {
+    if (currUrl === "/bugId") {
       setUploadHike(true);
       setExplore(false);
       setMyHikes(false);
-    } else if (currUrl === "/explore") {
+    } else if (currUrl === "/") {
       setUploadHike(false);
       setExplore(true);
       setMyHikes(false);
-    } else if (currUrl === "/myHikes") {
+    } else if (currUrl === "/createFly") {
       setUploadHike(false);
       setExplore(false);
       setMyHikes(true);
@@ -33,12 +35,23 @@ function SelectButtons() {
       setExplore(false);
       setMyHikes(false);
     }
-  }, [currUrl]);
+  }, [urlChange]);
+
+
+  function updateUrl(){
+    currUrl = window.location.pathname;
+    setUrlChange(true);
+    if(urlChange === true){
+      setUrlChange(false);
+    } else {
+      setUrlChange(true);
+    }
+  }
 
   return (
     <>
       <MainContain cName={styles["mainContain"]}>
-        <div className={styles["allButtons"]}>
+        <div className={styles["allButtons"]} onClick={updateUrl}>
           {uploadHike ? (
             <div className={`${styles.selectButton2} `}>
               <p>Bug Identifier</p>
@@ -63,7 +76,7 @@ function SelectButtons() {
           )}
           {myHikes ? (
             <div className={`${styles.selectButton2} `}>
-              <p></p>
+              <p>Create Fly</p>
             </div>
           ) : (
             <Link to="/createFly">

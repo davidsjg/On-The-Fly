@@ -36,3 +36,11 @@
     transform: rotate(360deg);
   }
 }
+
+
+.appContain{
+  background-image: url("https://images.freeimages.com/images/large-previews/abd/blurry-background-1638609.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}

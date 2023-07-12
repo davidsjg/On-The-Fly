@@ -14,16 +14,20 @@
 } */
 
 .mainContain {
-    background-image: url("https://i.imgur.com/F8rM7TJ.jpg");
-    opacity: 0.75;
+    /* background-image: url("https://i.imgur.com/F8rM7TJ.jpg"); */
+    background-image: url("https://i.imgur.com/iaFJi1s.jpg");
+    background-image: url("https://i.imgur.com/Uhdr7Cr.png");
+    /* background-image: url("https://i.imgur.com/cWtZuYM.png"); */
+    background-image: url("https://i.imgur.com/4TtIG9k.png");
+    /* opacity: 0.75; */
     background-size: cover ;
-    background-position: center;
+    background-position:right ;
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 20px;
     height: 150px;
-    margin: 10px;
+    margin: 0px 10px;
     box-shadow: 0 5px 4px rgba(0, 0, 0, 0.4);
     border-radius: 2px;
     border: 1px solid black;
