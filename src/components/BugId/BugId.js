@@ -56,46 +56,46 @@ function calcFlies(){
     //have all the flies
     //have a fly to compare it against
     console.log(flyData);
+
+    flies && flies.map((fly) => {
+        console.log(fly)
+    })
+
     if(flyData.above === true) {
-        const newFlies = flies.filter((fly) => fly.above !== false);
+        const newFlies = flies.filter((fly) => fly.above === true);
         setFlies(newFlies);
-        if(flyData.wingsOut === true){
-            const newFlies2 = flies.filter((fly) => fly.wingsOut === true);
-            setFlies(newFlies2);
-        } else {
-            const newFlies2 = flies.filter((fly) => fly.wingsOut === false);
-            setFlies(newFlies2);
-        }
-        // if(flyData.wingsOut !== true){
-
-
-        // }
-        if(flyData.flat === true){
-            const newFlies2 = flies.filter((fly) => fly.wingsDesc === 'flat');
-            setFlies(newFlies2);
-        } 
-        if (flyData.upright === true){
-            const newFlies2 = flies.filter((fly) => fly.wingsDesc === 'upright');
-            setFlies(newFlies2);
-        } 
-        if (flyData.tented === true){
-            const newFlies2 = flies.filter((fly) => fly.wingsDesc === 'tented');
-            setFlies(newFlies2);
-        }
     } 
-    if(flyData.above !== true) {
-    console.log(flyData.above);
-        console.log(flies);
-        const newFlies = (flies || []).filter((fly) => fly.wingsDesc === null);
-        console.log(newFlies);
-        setFlies(newFlies);
-        if(flyData.legs === true){
-            console.log('has legggiessss');
-            const newFlies = (flies || []).filter((fly) => fly.legs === false);
-            setFlies(newFlies);           
-        }  
-        //STOPPED HERE, DO THE REST BRAI
+
+    if(flyData.wingsOut === true){
+        const newFlies2 = flies.filter((fly) => fly.wingsOut === true);
+        setFlies(newFlies2);
+    } 
+
+    if(flyData.flat === true){
+        const newFlies2 = flies.filter((fly) => fly.wingsDesc === 'flat');
+        setFlies(newFlies2);
+    } 
+    if (flyData.upright === true){
+        const newFlies2 = flies.filter((fly) => fly.wingsDesc === 'upright');
+        setFlies(newFlies2);
+    } 
+    if (flyData.tented === true){
+        const newFlies2 = flies.filter((fly) => fly.wingsDesc === 'tented');
+        setFlies(newFlies2);
     }
+    // if(flyData.above !== true) {
+    // console.log(flyData.above);
+    //     console.log(flies);
+    //     const newFlies = (flies || []).filter((fly) => fly.wingsDesc === null);
+    //     console.log(newFlies);
+    //     setFlies(newFlies);
+    //     if(flyData.legs === true){
+    //         console.log('has legggiessss');
+    //         const newFlies = (flies || []).filter((fly) => fly.legs === false);
+    //         setFlies(newFlies);           
+    //     }  
+    //     //STOPPED HERE, DO THE REST BRAI
+    // }
 }
 
 async function fetchFlies() {
@@ -280,6 +280,13 @@ console.log(counter)
     }
   }
 
+  function resetData(){
+    const blankDataObj = { above: '', wingsOut : false, flat: false, wingsDesc: '', overBack : false, tented : false, upright: false, legs : false, joints : false, tail : false, antennae : false  }
+    setCounter(0);
+    setFlyData(blankDataObj);
+    fetchFlies();
+  }
+
   //if bugsArray state = 100, show all the flies with imitates != null
 
 
@@ -317,6 +324,7 @@ return  (
 
 
     <div className={styles["centerContain"]}>
+        <button onClick={resetData}>Reset</button>
         {counter === 0 &&
         <>
         <ButtonAnswer answer='Above' updateCounter={updateCounter} butt='but1'/>
@@ -428,3 +436,5 @@ export default BugId;
 //create 5 data flies, with one fly being the answer to current and prev questions
 //keep sorting array based on data that matches bugs, incrementally
 //have one bug object and compare and sort against it as it updates with user answers
+
+//put flies/bugs in cards, clean em up, make more per rows so more noticable when you whittle
