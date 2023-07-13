@@ -10,7 +10,8 @@ import {
     Image,
     Text,
     TextField,
-    View
+    View,
+    Card
   } from '@aws-amplify/ui-react';
 import Question from '../Question/Question';
 import ButtonAnswer from '../ButtonAnswer/ButtonAnswer';
@@ -42,7 +43,6 @@ let outToSide = false;
 
 useEffect(() => {
     fetchFlies();
-    console.log(flies);
   }, []);
 
 
@@ -58,7 +58,7 @@ function calcFlies(){
     console.log(flyData);
 
     flies && flies.map((fly) => {
-        console.log(fly)
+        // console.log(fly)
     })
 
     if(flyData.above === true) {
@@ -83,19 +83,47 @@ function calcFlies(){
         const newFlies2 = flies.filter((fly) => fly.wingsDesc === 'tented');
         setFlies(newFlies2);
     }
-    // if(flyData.above !== true) {
-    // console.log(flyData.above);
-    //     console.log(flies);
-    //     const newFlies = (flies || []).filter((fly) => fly.wingsDesc === null);
-    //     console.log(newFlies);
-    //     setFlies(newFlies);
-    //     if(flyData.legs === true){
-    //         console.log('has legggiessss');
-    //         const newFlies = (flies || []).filter((fly) => fly.legs === false);
-    //         setFlies(newFlies);           
-    //     }  
-    //     //STOPPED HERE, DO THE REST BRAI
-    // }
+    if(flyData.above !== true) {
+
+        const newFlies = (flies || []).filter((fly) => fly.above === false);
+        // const newFlies = flies.filter((fly) => fly.above === false);
+        // console.log(newFlies);
+        setFlies(newFlies);
+
+        if(flyData.legs === true){
+            const newFlies2 = (flies || []).filter((fly) => fly.legs === true);
+            setFlies(newFlies2);    
+    
+        }  
+
+        //STOPPED HERE, DO THE REST BRAI
+    }
+    if(flyData.joints === true){
+        console.log('inside joints');
+
+        flies.map((fly) => {
+            console.log(fly);
+        })
+        
+
+        const newFlies3 = (flies || []).filter((fly) => fly.legsJointed === true);
+        console.log(newFlies3);
+        setFlies(newFlies3);     
+   
+    } 
+    
+    if(flyData.tail === true){
+        const newFlies4 = flies.filter((fly) => fly.tail === true);
+        console.log(newFlies4);
+        setFlies(newFlies4);  
+        if(flyData.antennae === true){
+            const newFlies5 = flies.filter((fly) => fly.antennae === true);
+            console.log(newFlies5);
+            setFlies(newFlies5);      
+        }
+    }       
+
+
 }
 
 async function fetchFlies() {
@@ -131,11 +159,10 @@ async function fetchFlies() {
   }
 
   function conIt(fly){
-    console.log(fly);
+    // console.log(fly);
   }
 
   function butt1(){
-console.log(counter)
     switch (counter) {
         case 0:
             console.log('above');
@@ -247,14 +274,26 @@ console.log(counter)
           break;
         case 4:
             console.log('no joints')
+            setFlyData({
+                ...flyData,
+                joints : false
+            })
             setCounter(5)   
           break;
         case 5:
             console.log('no tail')
+            setFlyData({
+                ...flyData,
+                tail : false
+            })
             setCounter(6)   
           break;
         case 6:
             console.log('no antennae')
+            setFlyData({
+                ...flyData,
+                antennae : false
+            })
             setCounter(100)   //end
             setData();
           break;
@@ -294,8 +333,7 @@ return  (
 
 <div className={styles["mainContain"]}>
 
-    {}
-
+    <button onClick={resetData}>Reset</button>
 
     {counter === 0 &&
         <Question myProp={'Was the bug above or below water?'}/>
@@ -324,7 +362,6 @@ return  (
 
 
     <div className={styles["centerContain"]}>
-        <button onClick={resetData}>Reset</button>
         {counter === 0 &&
         <>
         <ButtonAnswer answer='Above' updateCounter={updateCounter} butt='but1'/>
@@ -378,21 +415,17 @@ return  (
 
     </div>
 
-    <div className={styles["rightHeader"]}>
-        <div className={styles["navMenu"]}>
-     
-       
-        </div>
-    </div>
-    <View margin="3rem 0">
+    
+    <View margin="3rem 0"className={styles["flyView"]} >
         {flies && 
         flies.map((fly) => (
-          <Flex
-            key={fly.id || fly.name}
-            direction="row"
+        //   <Flex
+
+            // direction="row"
             // justifyContent="center"
             // alignItems="center"
-          >
+        //   >
+            <Card className={styles["flyCard"]} key={fly.id || fly.name}>
             {fly.image && (
               <Image
                 src={fly.image}
@@ -412,17 +445,11 @@ return  (
             <Text as="strong" >
             Category: {fly.category}
             </Text>  
-            <Text as="strong" >
-            Category: {fly.wingsOut}
-            </Text>  
-            <Text as="strong" >
-            wingDesc: {fly.wingsDesc}
-            </Text>  
-            <Text as="strong" >
-            above: {fly.above}
-            </Text>  
 
-          </Flex>
+
+
+            </Card>
+        //   </Flex>
         ))}
     </View>
 </div>

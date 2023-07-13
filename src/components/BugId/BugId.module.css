@@ -20,3 +20,21 @@
 .navMenu{
     margin: 20px 0px;
 }
+
+.flyCard{
+    background-color: lightblue;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 150px; /*or whatever size card you want*/
+    border: 2px solid black;
+}
+
+.flyView{
+    width: 100%;/*whatever size you want your container*/
+    border: 3px solid black;
+    display: flex; /*Make sure to call this on your container*/
+    align-items: stretch; /*stretches all cards same height*/
+    justify-content: space-around; /*some space between cards*/
+}
