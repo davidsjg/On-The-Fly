@@ -33,8 +33,48 @@
 
 .flyView{
     width: 100%;/*whatever size you want your container*/
-    border: 3px solid black;
+    /* border: 3px solid black; */
     display: flex; /*Make sure to call this on your container*/
     align-items: stretch; /*stretches all cards same height*/
     justify-content: space-around; /*some space between cards*/
+}
+
+.catName{
+    display: flex;
+    flex-direction: column;
+    justify-content: baseline;
+    align-items: center;
+    /* text-align: center; */
+}
+
+.flyCardFinal{
+    /* height: 250px; */
+    padding: 0 !important;
+    border-radius: 5px;
+    box-shadow: rgb(0 0 0 / 12%) 0px 26px 30px -10px,
+      rgb(0 0 0 / 73%) 0px 16px 10px -10px;
+      margin: 0 50px;
+    border-color: black; 
+    border-width: 2px; 
+}
+
+.finalView{
+    width: 100%;/*whatever size you want your container*/
+    /* border: 3px solid black; */
+    display: flex; /*Make sure to call this on your container*/
+    align-items: stretch; /*stretches all cards same height*/
+    justify-content: space-around; /*some space between cards*/
+}
+
+.finalName{
+    text-align: center;
+    margin-bottom: 8px;
+    /* width: 468px !important; */
+}
+
+.finalImg{
+    /* height: 287px; */
+    /* height: auto; */
+    max-height: 450px;
+    
 }

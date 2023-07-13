@@ -20,26 +20,9 @@ function BugId() {
 
 const [counter, setCounter] = useState(0);
 const [flies, setFlies] = useState();
-const [button1, setButton1] = useState(false);
-const [button2, setButton2] = useState(false);
-const [myAbove, setMyAbove] = useState(false);
-const [out2Side, setOut2Side] = useState(false);
-const [flat, setFlat] = useState(false);
-const [legs, setLegs] = useState(false);
-const [overBack, setOverBack] = useState(false);
-const [tented, setTented] = useState(false);
-const [upright, setUpright] = useState(false);
-const [joints, setJoints] = useState(false);
-const [tail, setTail] = useState(false);
-const [antennae, setAntennae] = useState(false);
-const [curFlies, setCurFlies] = useState(flies)
+
 
 const [flyData, setFlyData] = useState({ imitates: '', above: '', wingsOut : false, flat: false, wingsDesc: '', overBack : false, tented : false, upright: false, legs : false, joints : false, tail : false, antennae : false  });
-
-
-// let myCount = 0;
-// let above = false;
-// let outToSide = false;
 
 useEffect(() => {
     fetchFlies();
@@ -66,7 +49,6 @@ function calcImitate(){
 }
 
 function calcFlies(){
-   // const newFlies = flies.filter((fly) => fly.id !== id);
     //have all the flies
     //have a fly to compare it against
     console.log(flyData);
@@ -83,13 +65,13 @@ function calcFlies(){
         setFlies(newFlies);
     } 
 
-    if(flyData.above){
-        const newFlies = flies.filter((fly) => fly.imitates === "");
-        setFlies(newFlies);
-    }
-
     if(flyData.wingsOut){
         const newFlies2 = flies.filter((fly) => fly.wingsOut === true);
+        setFlies(newFlies2);
+    } 
+
+    if(flyData.overBack){
+        const newFlies2 = flies.filter((fly) => fly.wingsOut !== true);
         setFlies(newFlies2);
     } 
 
@@ -382,7 +364,25 @@ return  (
         <Question myProp={'Does it have an antennae?'}/> 
     }
     {counter === 100 &&
-        <Question myProp={'End'}/> 
+        <>    
+        <View margin="3rem 0"className={styles["finalView"]} >
+            {flies && 
+                flies.map((fly) => (
+                    <Card className={styles["flyCardFinal"]} key={fly.id || fly.name}>
+                        {fly.image && (
+                        <Image
+                            src={fly.image}
+                            alt={`visual aid for ${flies.name}`}
+                            className={styles["finalImg"]}
+                        />       
+                        )}
+                        <div as="strong" fontWeight={700} className={styles["finalName"]}>
+                        {fly.name}
+                        </div>
+                    </Card>
+            ))}
+        </View>
+    </>
     }
 
 
@@ -440,44 +440,28 @@ return  (
 
     </div>
 
-    
+    {counter !== 100 &&
     <View margin="3rem 0"className={styles["flyView"]} >
         {flies && 
         flies.map((fly) => (
-        //   <Flex
-
-            // direction="row"
-            // justifyContent="center"
-            // alignItems="center"
-        //   >
             <Card className={styles["flyCard"]} key={fly.id || fly.name}>
-            {fly.image && (
-              <Image
-                src={fly.image}
-                alt={`visual aid for ${flies.name}`}
-                style={{ height: 40 }}
-              />       
-            )}
-            ---------
-            <Text as="strong" fontWeight={700}>
-              {fly.name}
-            </Text>
-            <Text as="span">{fly.imitates}</Text>
-            { fly.size > 0 &&
-            <Text as="strong" fontWeight={700}>
-            Size: {fly.size}
-            </Text>              
-            }
-            <Text as="strong" >
-            Category: {fly.category}
-            </Text>  
+                {fly.image && (
+                <Image
+                    src={fly.image}
+                    alt={`visual aid for ${flies.name}`}
+                    style={{ height: 40 }}
+                />       
+                )}
 
-
-
+                ---------
+            
+                <Text as="strong" fontWeight={700}>
+                {fly.name}
+                </Text>
             </Card>
-        //   </Flex>
         ))}
     </View>
+    }
 </div>
 );
 }
@@ -490,4 +474,6 @@ export default BugId;
 //keep sorting array based on data that matches bugs, incrementally
 //have one bug object and compare and sort against it as it updates with user answers
 
-//put flies/bugs in cards, clean em up, make more per rows so more noticable when you whittle
+//at very end, need to have all the selected options output
+//need to be able to click on the fly
+//take to detail page that has it as main event, with potential flies to use under
