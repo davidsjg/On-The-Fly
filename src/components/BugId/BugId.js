@@ -12,6 +12,8 @@ import {
     TextField,
     View
   } from '@aws-amplify/ui-react';
+import Question from '../Question/Question';
+import ButtonAnswer from '../ButtonAnswer/ButtonAnswer';
 
 function BugId() {
 
@@ -31,7 +33,7 @@ const [tail, setTail] = useState(false);
 const [antennae, setAntennae] = useState(false);
 const [curFlies, setCurFlies] = useState(flies)
 
-const [flyData, setFlyData] = useState({ above: false, wingsOut : false, flat: false, wingsDesc: '', overBack : false, tented : false, upright: false, legs : false, joints : false, tail : true, antennae : false  });
+const [flyData, setFlyData] = useState({ above: '', wingsOut : false, flat: false, wingsDesc: '', overBack : false, tented : false, upright: false, legs : false, joints : false, tail : false, antennae : false  });
 
 
 let myCount = 0;
@@ -53,40 +55,47 @@ function calcFlies(){
    // const newFlies = flies.filter((fly) => fly.id !== id);
     //have all the flies
     //have a fly to compare it against
-
+    console.log(flyData);
     if(flyData.above === true) {
-        const newFlies = flies.filter((fly) => fly.above === false);
+        const newFlies = flies.filter((fly) => fly.above !== false);
         setFlies(newFlies);
-        if(flyData.overBack === true){
-            if(flyData.flat === true){
-                const newFlies2 = flies.filter((fly) => fly.wingsDesc === 'flat');
-                setFlies(newFlies2);
-            } 
-            if (flyData.upright === true){
-                const newFlies2 = flies.filter((fly) => fly.wingsDesc === 'upright');
-                setFlies(newFlies2);
-            } 
-            if (flyData.tented === true){
-                const newFlies2 = flies.filter((fly) => fly.wingsDesc === 'tented');
-                setFlies(newFlies2);
-            }
+        if(flyData.wingsOut === true){
+            const newFlies2 = flies.filter((fly) => fly.wingsOut === true);
+            setFlies(newFlies2);
+        } else {
+            const newFlies2 = flies.filter((fly) => fly.wingsOut === false);
+            setFlies(newFlies2);
         }
+        // if(flyData.wingsOut !== true){
+
+
+        // }
+        if(flyData.flat === true){
+            const newFlies2 = flies.filter((fly) => fly.wingsDesc === 'flat');
+            setFlies(newFlies2);
+        } 
+        if (flyData.upright === true){
+            const newFlies2 = flies.filter((fly) => fly.wingsDesc === 'upright');
+            setFlies(newFlies2);
+        } 
+        if (flyData.tented === true){
+            const newFlies2 = flies.filter((fly) => fly.wingsDesc === 'tented');
+            setFlies(newFlies2);
+        }
+    } 
+    if(flyData.above !== true) {
+    console.log(flyData.above);
+        console.log(flies);
+        const newFlies = (flies || []).filter((fly) => fly.wingsDesc === null);
+        console.log(newFlies);
+        setFlies(newFlies);
+        if(flyData.legs === true){
+            console.log('has legggiessss');
+            const newFlies = (flies || []).filter((fly) => fly.legs === false);
+            setFlies(newFlies);           
+        }  
+        //STOPPED HERE, DO THE REST BRAI
     }
-    if(flyData.wingsOut === true){
-        const newFlies2 = flies.filter((fly) => fly.wingsOut === false);
-        setFlies(newFlies2);
-    } 
-    if(flyData.overBack === true){
-
-
-    } 
-
-
-
-    // if(flyData.wingsOut === false){
-    //     const newFlies = flies.filter((fly) => fly.wingsOut === true);
-    //     setFlies(newFlies);
-    // }
 }
 
 async function fetchFlies() {
@@ -105,6 +114,7 @@ async function fetchFlies() {
   }
 
   function updateCounter(e){
+    console.log(e);
     if(e === 'but1'){
         butt1();
     } else if (e === 'but2') {
@@ -125,7 +135,7 @@ async function fetchFlies() {
   }
 
   function butt1(){
-
+console.log(counter)
     switch (counter) {
         case 0:
             console.log('above');
@@ -167,6 +177,7 @@ async function fetchFlies() {
                 joints : true
             })
             setCounter(5)   //end
+            setData();
           break;
         case 5:
             console.log('has tail')
@@ -175,6 +186,7 @@ async function fetchFlies() {
                 tail : true
             })
             setCounter(6)   //end
+            setData();
           break;
         case 6:
             console.log('has antennae')
@@ -200,6 +212,10 @@ async function fetchFlies() {
 
     switch (counter) {
         case 0:
+            setFlyData({
+                ...flyData,
+                above : false
+            })
             setCounter(3);
             console.log(above);
           break;
@@ -222,6 +238,10 @@ async function fetchFlies() {
           break;
         case 3:
             console.log('no legs')
+            setFlyData({
+                ...flyData,
+                legs : false
+            })
             setCounter(100)   //end
             setData();
           break;
@@ -271,129 +291,74 @@ return  (
 
 
     {counter === 0 &&
-        <div className={styles["leftHeader"]}>
-            <div className={styles["navMenu"]}>
-                    Was the bug above or below water?
-            </div>
-        </div>
+        <Question myProp={'Was the bug above or below water?'}/>
     }
     {counter === 1 &&
-        <div className={styles["leftHeader"]}>
-            <div className={styles["navMenu"]}>
-                    What direction do the wings go?
-            </div>
-        </div>
+        <Question myProp={'What direction do the wings go?'}/>
     }
     {counter === 2 &&
-        <div className={styles["leftHeader"]}>
-            <div className={styles["navMenu"]}>
-                    How do the wings lay?
-            </div>
-        </div>
+        <Question myProp={'How do the wings lay?'}/>    
     }
     {counter === 3 &&
-        <div className={styles["leftHeader"]}>
-            <div className={styles["navMenu"]}>
-                    Does it have legs?
-            </div>
-        </div>
+        <Question myProp={'Does it have legs?'}/> 
     }
     {counter === 4 &&
-        <div className={styles["leftHeader"]}>
-            <div className={styles["navMenu"]}>
-                    What type of legs does it have?
-            </div>
-        </div>
+        <Question myProp={'What type of legs does it have?'}/> 
     }
     {counter === 5 &&
-        <div className={styles["leftHeader"]}>
-            <div className={styles["navMenu"]}>
-                    Does it have a tail?
-            </div>
-        </div>
+        <Question myProp={'Does it have a tail?'}/> 
     }
     {counter === 6 &&
-        <div className={styles["leftHeader"]}>
-            <div className={styles["navMenu"]}>
-                    Does it have an antennae?
-            </div>
-        </div>
+        <Question myProp={'Does it have an antennae?'}/> 
     }
     {counter === 100 &&
-        <div className={styles["leftHeader"]}>
-            <div className={styles["navMenu"]}>
-                    End
-            </div>
-        </div>
+        <Question myProp={'End'}/> 
     }
 
 
     <div className={styles["centerContain"]}>
         {counter === 0 &&
         <>
-            <button className={styles["navMenu"]} onClick={() => updateCounter('but1')}>  
-                Above
-            </button>
-            <button className={styles["navMenu"]} onClick={() => updateCounter('but2')}>
-                Below      
-            </button>
+        <ButtonAnswer answer='Above' updateCounter={updateCounter} butt='but1'/>
+        <ButtonAnswer answer='Below' updateCounter={updateCounter} butt='but2'/>
         </>
         }
         {counter === 1 &&
         <>
-            <button className={styles["navMenu"]} onClick={() => updateCounter('but1')}>  
-                Out to Side
-            </button>
-            <button className={styles["navMenu"]} onClick={() => updateCounter('but2')}>
-                Over Back      
-            </button>
+        <ButtonAnswer answer='Out to Side' updateCounter={updateCounter} butt='but1'/>
+        <ButtonAnswer answer='Over Back' updateCounter={updateCounter} butt='but2'/>
         </>
         }
         {counter === 2 &&
+        
         <>
-            <button className={styles["navMenu"]} onClick={() => updateCounter('but1')}>  
-                Flat over back
-            </button>
-            <button className={styles["navMenu"]} onClick={() => updateCounter('but2')}>
-                Tented over back    
-            </button>
-            <button className={styles["navMenu"]} onClick={() => updateCounter('but3')}>  
-                Upright (sailboat)
-            </button>
+        <ButtonAnswer answer='Flat over back' updateCounter={updateCounter} butt='but1'/>
+        <ButtonAnswer answer='Tented over back' updateCounter={updateCounter} butt='but2'/>
+        <ButtonAnswer answer='Upright' updateCounter={updateCounter} butt='but3'/>
         </>
         }
         {counter === 3 &&
         <>
-            <button className={styles["navMenu"]} onClick={() => updateCounter('but1')}>  
-                Has Legs
-            </button>
-            <button className={styles["navMenu"]} onClick={() => updateCounter('but2')}>
-                No Legs   
-            </button>
+        <ButtonAnswer answer='Has Legs' updateCounter={updateCounter} butt='but1'/>
+        <ButtonAnswer answer='No Legs' updateCounter={updateCounter} butt='but2'/>
         </>
         }
         {counter === 4 &&
         <>
-            <button className={styles["navMenu"]} onClick={() => updateCounter('but1')}>  
-                Has Joints
-            </button>
-            <button className={styles["navMenu"]} onClick={() => updateCounter('but2')}>
-                No Joints   
-            </button>
+        <ButtonAnswer answer='Has Joints' updateCounter={updateCounter} butt='but1'/>
+        <ButtonAnswer answer='No Joints' updateCounter={updateCounter} butt='but2'/>
         </>
         }
         {counter === 5 &&
         <>
-            <button className={styles["navMenu"]} onClick={() => updateCounter('but1')}>  
-                Has Tail
-            </button>
-            <button className={styles["navMenu"]} onClick={() => updateCounter('but2')}>
-                No Tail   
-            </button>
+        <ButtonAnswer answer='Has Tail' updateCounter={updateCounter} butt='but1'/>
+        <ButtonAnswer answer='No Tail' updateCounter={updateCounter} butt='but2'/>
         </>
         }
         {counter === 6 &&
         <>
+        <ButtonAnswer answer='Has Antennae' updateCounter={updateCounter} butt='but1'/>
+        <ButtonAnswer answer='No Antennae' updateCounter={updateCounter} butt='but2'/>
             <button className={styles["navMenu"]} onClick={() => updateCounter('but1')}>  
                 Has Antennae
             </button>
@@ -445,9 +410,10 @@ return  (
             <Text as="strong" >
             wingDesc: {fly.wingsDesc}
             </Text>  
-            <>
-              --------------------------------------------------------
-            </>
+            <Text as="strong" >
+            above: {fly.above}
+            </Text>  
+
           </Flex>
         ))}
     </View>

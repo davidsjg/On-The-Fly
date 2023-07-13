@@ -21,6 +21,8 @@ import { CheckboxField, Radio, RadioGroupField } from "@aws-amplify/ui-react";
 
 function CreateFly () {
   const [flies, setFlies] = useState([]);
+  const [flyData, setFlyData] = useState({ above: '', legs : false, joints : false, tail : true, antennae : false, wingsOut : '' });
+
 
   useEffect(() => {
     fetchFlies();
@@ -41,29 +43,71 @@ function CreateFly () {
     setFlies(fliesFromAPI);
   }
 
+  function check1(){
+    setFlyData({
+      ...flyData,
+      above : true
+  })
+  }
+  function check2(){
+    setFlyData({
+      ...flyData,
+      legs : true
+  })
+  }
+  function check3(){
+    setFlyData({
+      ...flyData,
+      joints : true
+  })
+  }
+  function check4(){
+    setFlyData({
+      ...flyData,
+      tail : true
+  })
+  }
+  function check5(){
+    setFlyData({
+      ...flyData,
+      antennae : true
+  })
+  }
+  function check6(){
+    setFlyData({
+      ...flyData,
+      wingsOut : true
+  })
+  }
+
   async function createFly(event) {
     event.preventDefault();
     const form = new FormData(event.target);
     const image = form.get("image");
+    console.log(form);
     const data = {
       name: form.get("name"),
-      above: form.get("above"),
-      legs: form.get("hasLegs"),
-      legsJointed: form.get("legsJointed"),
-      tail: form.get("tail"),
-      antennae: form.get("antennae"),
-      wingsOut: form.get("wingsOut"),
+      above: flyData.above,
+      legs: flyData.legs,
+      legsJointed: flyData.joints,
+      tail: flyData.tail,
+      antennae: flyData.antennae,
+      wingsOut: flyData.wingsOut,
       wingsDesc: form.get("wingsDesc"),
       imitates: form.get("imitates"),
       image: image.name,
       size: form.get("size"),
       category: form.get("category")
     };
+    console.log(data);
     if (!!data.image) await Storage.put(data.name, image);
+    console.log(data)
     await API.graphql({
       query: createFlyMutation,
       variables: { input: data },
-    });
+    }).then((e) => {
+      console.log(e);
+    })
     fetchFlies();
     event.target.reset();
   }
@@ -93,12 +137,12 @@ function CreateFly () {
             required
             className="flyText"
           />
-          <CheckboxField label="Above Water?" name="above" value="yes" />
-          <CheckboxField label="Has Legs?" name="hasLegs" value="yes" />
-          <CheckboxField label="Legs Jointed?" name="legsJointed" value="yes" />
-          <CheckboxField label="Tail?" name="tail" value="yes" />
-          <CheckboxField label="Antennae?" name="antennae" value="yes" />
-          <CheckboxField label="Wings Out?" name="wingsOut" value="yes" />
+          <CheckboxField label="Above Water?" name="above" value="yes" onClick={check1} />
+          <CheckboxField label="Has Legs?" name="hasLegs" value="yes"onClick={check2}  />
+          <CheckboxField label="Legs Jointed?" name="legsJointed" value="yes" onClick={check3} />
+          <CheckboxField label="Tail?" name="tail" value="yes" onClick={check4} />
+          <CheckboxField label="Antennae?" name="antennae" value="yes" onClick={check5}  />
+          <CheckboxField label="Wings Out?" name="wingsOut" value="yes" onClick={check6} />
           <RadioGroupField label="Wing Description" name="wingsDesc" className="wingDesc">
             <Radio value="flat">Flat</Radio>
             <Radio value="tented">Tented</Radio>
@@ -170,6 +214,31 @@ function CreateFly () {
             <Text as="strong" >
             Category: {fly.category}
             </Text>  
+  
+            <Text as="strong" >
+            wingDesc: {fly.wingsDesc}
+            </Text>  
+            <Text as="strong" >
+            {fly.above === true && 
+            <>above</>
+            }
+            </Text>  
+            <Text as="strong" >
+            {fly.legs === true && 
+            <>legs</>
+            }
+            </Text>
+            <Text>
+            {fly.antennae === true && 
+            <>antennae</>
+            }
+            </Text>   
+            <Text>
+            {fly.wingsOut === true && 
+            <>wings out</>
+            }
+            </Text>   
+ 
             <Button variation="link" onClick={() => deleteFly(fly)}>
               Delete fly
             </Button>
