@@ -25,7 +25,7 @@ const [counter, setCounter] = useState(0);
 const [flies, setFlies] = useState();
 
 
-const [flyData, setFlyData] = useState({ imitates: '', above: '', wingsOut : false, flat: false, wingsDesc: '', overBack : false, tented : false, upright: false, legs : false, joints : false, tail : false, antennae : false  });
+const [flyData, setFlyData] = useState({ imitates: '', above: '', wingsOut : false, flat: false, wingsDesc: '', overBack : false, tented : false, upright: false, legs : '', joints : '', tail : '', antennae : ''  });
 
 useEffect(() => {
     fetchFlies();
@@ -66,33 +66,48 @@ function calcFlies(){
     if(flyData.above) {
         const newFlies = flies.filter((fly) => fly && fly.above === true);
         setFlies(newFlies);
-    } else if (flyData.above === false) {
-        const newFlies2 = (flies || []).filter((fly) => fly && fly.above === false);
+            if(flyData.wingsOut){
+        const newFlies2 = flies.filter((fly) => fly.wingsOut === true);
+        setFlies(newFlies2);
+    } 
+
+    if(flyData.overBack){
+        const newFlies2 = flies.filter((fly) => fly.wingsOut !== true);
+        setFlies(newFlies2);
+    } 
+
+    if(flyData.flat === true){
+        const newFlies2 = flies.filter((fly) => fly.wingsDesc === 'flat');
+        setFlies(newFlies2);
+    } 
+    if (flyData.upright === true){
+        const newFlies2 = flies.filter((fly) => fly.wingsDesc === 'upright');
+        setFlies(newFlies2);
+    } 
+    if (flyData.tented === true){
+        const newFlies2 = flies.filter((fly) => fly.wingsDesc === 'tented');
         setFlies(newFlies2);
     }
+    }  
+    if (!flyData.above) {
+        const newFlies2 = flies && flies.filter((fly) => fly.above === false);
+        setFlies(newFlies2);
+        console.log(!flyData.legs);
+        console.log(!flyData.above);
+        if (!flyData.legs !== true && !flyData.above !== true) {
+            console.log('inside bullshit')
+            const newFlies2 = flies && flies.filter((fly) => fly.legs === false);
+            const newFlies3 = newFlies2 && newFlies2.filter((fly) => fly.above === false);
+            setFlies(newFlies3);    
+    }
+    }
 
-    // if(flyData.wingsOut){
-    //     const newFlies2 = flies.filter((fly) => fly.wingsOut === true);
-    //     setFlies(newFlies2);
-    // } 
+    console.log(flyData.legs);
+    console.log(flyData.above);
+    console.log(!flyData.legs && !flyData.above);
 
-    // if(flyData.overBack){
-    //     const newFlies2 = flies.filter((fly) => fly.wingsOut !== true);
-    //     setFlies(newFlies2);
-    // } 
 
-    // if(flyData.flat === true){
-    //     const newFlies2 = flies.filter((fly) => fly.wingsDesc === 'flat');
-    //     setFlies(newFlies2);
-    // } 
-    // if (flyData.upright === true){
-    //     const newFlies2 = flies.filter((fly) => fly.wingsDesc === 'upright');
-    //     setFlies(newFlies2);
-    // } 
-    // if (flyData.tented === true){
-    //     const newFlies2 = flies.filter((fly) => fly.wingsDesc === 'tented');
-    //     setFlies(newFlies2);
-    // }
+
     // if(flyData.above === false) {
 
     //     const newFlies5 = (flies || []).filter((fly) => fly.above === false);
@@ -103,10 +118,7 @@ function calcFlies(){
 
     // }
 
-    // if (flyData.legs !== true && flyData.above !== true) {
-    //     const newFlies2 = (flies || []).filter((fly) => fly.legs === false);
-    //     setFlies(newFlies2);    
-    // }
+
 
     // if(flyData.legs === true && flyData.above !== true){
     //     const newFlies2 = (flies || []).filter((fly) => fly.legs === true);
@@ -187,6 +199,7 @@ async function fetchFlies() {
                 above : true
             })
             setCounter(1);
+            console.log('above = true');
           break;
         case 1:
             console.log('out to side')
@@ -260,7 +273,8 @@ async function fetchFlies() {
                 above : false
             })
             setCounter(3);
-            console.log("above");
+            console.log("above is false");
+            setData();
           break;
         case 1:
             console.log('over back')
@@ -269,6 +283,7 @@ async function fetchFlies() {
                 overBack : true
             })
             setCounter(2)   
+            setData();
           break;
         case 2:
             console.log('tented')
@@ -398,7 +413,7 @@ return  (
     <div className={styles["centerContain"]}>
         {counter === 0 &&
         <>
-        <ButtonAnswer answer='Above' updateCounter={updateCounter} butt='but1' cName={'class2'}/>
+        <ButtonAnswer answer='Above' updateCounter={updateCounter} butt='but1' />  {/*cName={'class2'} */}
         <ButtonAnswer answer='Below' updateCounter={updateCounter} butt='but2'/>
         </>
         }
