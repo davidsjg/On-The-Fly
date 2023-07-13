@@ -34,22 +34,36 @@ const [tail, setTail] = useState(false);
 const [antennae, setAntennae] = useState(false);
 const [curFlies, setCurFlies] = useState(flies)
 
-const [flyData, setFlyData] = useState({ above: '', wingsOut : false, flat: false, wingsDesc: '', overBack : false, tented : false, upright: false, legs : false, joints : false, tail : false, antennae : false  });
+const [flyData, setFlyData] = useState({ imitates: '', above: '', wingsOut : false, flat: false, wingsDesc: '', overBack : false, tented : false, upright: false, legs : false, joints : false, tail : false, antennae : false  });
 
 
-let myCount = 0;
-let above = false;
-let outToSide = false;
+// let myCount = 0;
+// let above = false;
+// let outToSide = false;
 
 useEffect(() => {
     fetchFlies();
-  }, []);
+    calcImitate();
+    calcFlies();
+}, []);
 
 
 useEffect(() => {
     setData();
     calcFlies();
-  }, [flyData]);
+}, [flyData]);
+
+function calcImitate(){
+    flies && flies.map((fly) => {
+        // console.log(fly)
+        if(fly.imitates){
+            setFlyData({
+                ...flyData,
+                imitates : true
+            })
+        }
+    })
+}
 
 function calcFlies(){
    // const newFlies = flies.filter((fly) => fly.id !== id);
@@ -57,16 +71,24 @@ function calcFlies(){
     //have a fly to compare it against
     console.log(flyData);
 
+    flies && console.log(flies);
+
     flies && flies.map((fly) => {
-        // console.log(fly)
+        console.log(fly)
     })
 
-    if(flyData.above === true) {
+
+    if(flyData.above) {
         const newFlies = flies.filter((fly) => fly.above === true);
         setFlies(newFlies);
     } 
 
-    if(flyData.wingsOut === true){
+    if(flyData.above){
+        const newFlies = flies.filter((fly) => fly.imitates === "");
+        setFlies(newFlies);
+    }
+
+    if(flyData.wingsOut){
         const newFlies2 = flies.filter((fly) => fly.wingsOut === true);
         setFlies(newFlies2);
     } 
@@ -138,7 +160,10 @@ async function fetchFlies() {
         return note;
       })
     );
-    setFlies(fliesFromAPI);
+
+    const finalFlies = fliesFromAPI.filter((fly) => fly.imitates === "")
+
+    setFlies(finalFlies);
   }
 
   function updateCounter(e){
@@ -244,7 +269,7 @@ async function fetchFlies() {
                 above : false
             })
             setCounter(3);
-            console.log(above);
+            console.log("above");
           break;
         case 1:
             console.log('over back')
@@ -430,9 +455,10 @@ return  (
               <Image
                 src={fly.image}
                 alt={`visual aid for ${flies.name}`}
-                style={{ width: 400 }}
+                style={{ height: 40 }}
               />       
             )}
+            ---------
             <Text as="strong" fontWeight={700}>
               {fly.name}
             </Text>
