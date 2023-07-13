@@ -6,7 +6,7 @@ return  (
 
     <>
         <div >
-            <div style={{margin: 20}}>
+            <div className={`${ props.cName }`}>
                     {props.myProp}
             </div>
         </div>

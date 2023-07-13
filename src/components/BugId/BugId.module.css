@@ -76,5 +76,9 @@
     /* height: 287px; */
     /* height: auto; */
     max-height: 450px;
-    
+}
+
+.class1{
+    background-color: red;
+    text-decoration:wavy;
 }

@@ -5,7 +5,7 @@ function ButtonAnswer(props) {
 return  (
 
     <>
-        <button  onClick={() => props.updateCounter(props.butt)}>  
+        <button className={`${ props.cName }`} onClick={() => props.updateCounter(props.butt)}>  
             {props.answer}
         </button>
     </>

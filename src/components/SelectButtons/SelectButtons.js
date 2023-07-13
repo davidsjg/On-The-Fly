@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import styles from "./SelectButtons.module.css";
 import MainContain from "../MainContain/MainContain";
 import { Link, Outlet, useParams } from "react-router-dom";
+import WrapComp from "../WrapComp/WrapComp";
+import WrapComp2 from "../WrapComp2/WrapComp2";
 
 function SelectButtons() {
   const currParam = useParams();
@@ -53,36 +55,51 @@ function SelectButtons() {
       <MainContain cName={styles["mainContain"]}>
         <div className={styles["allButtons"]} onClick={updateUrl}>
           {uploadHike ? (
-            <div className={`${styles.selectButton2} `}>
-              <p>Bug Identifier</p>
-            </div>
+            // <div className={`${styles.selectButton2} `}>
+            //   <p>Bug Identifier</p>
+            // </div>
+            <WrapComp buttonText={'Bug Identifier'}/>
           ) : (
+            // <Link to="/bugId">
+            //   <div className={`${styles.selectButton}`}>
+            //     <p>Bug Identifier</p>
+            //   </div>
+            // </Link>
             <Link to="/bugId">
-              <div className={`${styles.selectButton}`}>
-                <p>Bug Identifier</p>
-              </div>
+              {/* <WrapComp buttonText={'Bug Identifier'}/> */}
+              <WrapComp2 buttonText={'Bug Identifier'}/>
             </Link>
+
+
           )}
           {explore ? (
-            <div className={`${styles.selectButton2} `}>
-              <p>Explore Bugs</p>
-            </div>
+            // <div className={`${styles.selectButton2} `}>
+            //   <p>Explore Bugs</p>
+            // </div>
+            <WrapComp buttonText={'Explore Bugs'}/>
+
           ) : (
             <Link to="/">
-              <div className={`${styles.selectButton}`}>
+              {/* <div className={`${styles.selectButton}`}>
                 <p>Explore Bugs</p>
-              </div>
+              </div> */}
+              <WrapComp2 buttonText={'Explore Bugs'}/>
+
             </Link>
           )}
           {myHikes ? (
-            <div className={`${styles.selectButton2} `}>
-              <p>Create Fly</p>
-            </div>
+            // <div className={`${styles.selectButton2} `}>
+            //   <p>Create Fly</p>
+            // </div>
+              <WrapComp buttonText={'Create Fly'}/>
+
           ) : (
             <Link to="/createFly">
-              <div className={`${styles.selectButton}`}>
+              {/* <div className={`${styles.selectButton}`}>
                 <p>Create Fly</p>
-              </div>
+              </div> */}
+              <WrapComp2 buttonText={'Create Fly'}/>
+
             </Link>
           )}
         </div>

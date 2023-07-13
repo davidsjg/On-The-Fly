@@ -15,6 +15,9 @@ import {
   } from '@aws-amplify/ui-react';
 import Question from '../Question/Question';
 import ButtonAnswer from '../ButtonAnswer/ButtonAnswer';
+import styled from "styled-components";
+import WrapComp from '../WrapComp/WrapComp';
+
 
 function BugId() {
 
@@ -61,71 +64,77 @@ function calcFlies(){
 
 
     if(flyData.above) {
-        const newFlies = flies.filter((fly) => fly.above === true);
+        const newFlies = flies.filter((fly) => fly && fly.above === true);
         setFlies(newFlies);
-    } 
-
-    if(flyData.wingsOut){
-        const newFlies2 = flies.filter((fly) => fly.wingsOut === true);
-        setFlies(newFlies2);
-    } 
-
-    if(flyData.overBack){
-        const newFlies2 = flies.filter((fly) => fly.wingsOut !== true);
-        setFlies(newFlies2);
-    } 
-
-    if(flyData.flat === true){
-        const newFlies2 = flies.filter((fly) => fly.wingsDesc === 'flat');
-        setFlies(newFlies2);
-    } 
-    if (flyData.upright === true){
-        const newFlies2 = flies.filter((fly) => fly.wingsDesc === 'upright');
-        setFlies(newFlies2);
-    } 
-    if (flyData.tented === true){
-        const newFlies2 = flies.filter((fly) => fly.wingsDesc === 'tented');
+    } else if (flyData.above === false) {
+        const newFlies2 = (flies || []).filter((fly) => fly && fly.above === false);
         setFlies(newFlies2);
     }
-    if(flyData.above !== true) {
 
-        const newFlies = (flies || []).filter((fly) => fly.above === false);
-        // const newFlies = flies.filter((fly) => fly.above === false);
-        // console.log(newFlies);
-        setFlies(newFlies);
+    // if(flyData.wingsOut){
+    //     const newFlies2 = flies.filter((fly) => fly.wingsOut === true);
+    //     setFlies(newFlies2);
+    // } 
 
-        if(flyData.legs === true){
-            const newFlies2 = (flies || []).filter((fly) => fly.legs === true);
-            setFlies(newFlies2);    
+    // if(flyData.overBack){
+    //     const newFlies2 = flies.filter((fly) => fly.wingsOut !== true);
+    //     setFlies(newFlies2);
+    // } 
+
+    // if(flyData.flat === true){
+    //     const newFlies2 = flies.filter((fly) => fly.wingsDesc === 'flat');
+    //     setFlies(newFlies2);
+    // } 
+    // if (flyData.upright === true){
+    //     const newFlies2 = flies.filter((fly) => fly.wingsDesc === 'upright');
+    //     setFlies(newFlies2);
+    // } 
+    // if (flyData.tented === true){
+    //     const newFlies2 = flies.filter((fly) => fly.wingsDesc === 'tented');
+    //     setFlies(newFlies2);
+    // }
+    // if(flyData.above === false) {
+
+    //     const newFlies5 = (flies || []).filter((fly) => fly.above === false);
+    //     // const newFlies = flies.filter((fly) => fly.above === false);
+    //     // console.log(newFlies);
+    //     setFlies(newFlies5);
+
+
+    // }
+
+    // if (flyData.legs !== true && flyData.above !== true) {
+    //     const newFlies2 = (flies || []).filter((fly) => fly.legs === false);
+    //     setFlies(newFlies2);    
+    // }
+
+    // if(flyData.legs === true && flyData.above !== true){
+    //     const newFlies2 = (flies || []).filter((fly) => fly.legs === true);
+    //     setFlies(newFlies2);    
+
+    // } else if (flyData.legs === true && flyData.above !== true) {
+    //     const newFlies2 = (flies || []).filter((fly) => fly.legs === false);
+    //     setFlies(newFlies2);    
+    // }
+    // if(flyData.joints === true){
+    //     console.log('inside joints');
+    //     const newFlies3 = (flies || []).filter((fly) => fly.legsJointed === true);
+    //     console.log(newFlies3);
+    //     setFlies(newFlies3);     
+    // } 
     
-        }  
+    // if(flyData.tail === true){
+    //     const newFlies4 = flies.filter((fly) => fly.tail === true);
+    //     console.log(newFlies4);
+    //     setFlies(newFlies4);  
 
-        //STOPPED HERE, DO THE REST BRAI
-    }
-    if(flyData.joints === true){
-        console.log('inside joints');
+    // }     
 
-        flies.map((fly) => {
-            console.log(fly);
-        })
-        
-
-        const newFlies3 = (flies || []).filter((fly) => fly.legsJointed === true);
-        console.log(newFlies3);
-        setFlies(newFlies3);     
-   
-    } 
-    
-    if(flyData.tail === true){
-        const newFlies4 = flies.filter((fly) => fly.tail === true);
-        console.log(newFlies4);
-        setFlies(newFlies4);  
-        if(flyData.antennae === true){
-            const newFlies5 = flies.filter((fly) => fly.antennae === true);
-            console.log(newFlies5);
-            setFlies(newFlies5);      
-        }
-    }       
+    // if(flyData.antennae === true){
+    //     const newFlies5 = flies.filter((fly) => fly.antennae === true);
+    //     console.log(newFlies5);
+    //     setFlies(newFlies5);      
+    // }
 
 
 }
@@ -343,25 +352,25 @@ return  (
     <button onClick={resetData}>Reset</button>
 
     {counter === 0 &&
-        <Question myProp={'Was the bug above or below water?'}/>
+        <Question myProp={'Was the bug above or below water?'} cName={'class1'}/>
     }
     {counter === 1 &&
-        <Question myProp={'What direction do the wings go?'}/>
+        <Question myProp={'What direction do the wings go?'} cName={'class1'}/>
     }
     {counter === 2 &&
-        <Question myProp={'How do the wings lay?'}/>    
+        <Question myProp={'How do the wings lay?'} cName={'class1'}/>    
     }
     {counter === 3 &&
-        <Question myProp={'Does it have legs?'}/> 
+        <Question myProp={'Does it have legs?'} cName={'class1'}/> 
     }
     {counter === 4 &&
-        <Question myProp={'What type of legs does it have?'}/> 
+        <Question myProp={'What type of legs does it have?'} cName={'class1'}/> 
     }
     {counter === 5 &&
-        <Question myProp={'Does it have a tail?'}/> 
+        <Question myProp={'Does it have a tail?'} cName={'class1'}/> 
     }
     {counter === 6 &&
-        <Question myProp={'Does it have an antennae?'}/> 
+        <Question myProp={'Does it have an antennae?'} cName={'class1'}/> 
     }
     {counter === 100 &&
         <>    
@@ -389,7 +398,7 @@ return  (
     <div className={styles["centerContain"]}>
         {counter === 0 &&
         <>
-        <ButtonAnswer answer='Above' updateCounter={updateCounter} butt='but1'/>
+        <ButtonAnswer answer='Above' updateCounter={updateCounter} butt='but1' cName={'class2'}/>
         <ButtonAnswer answer='Below' updateCounter={updateCounter} butt='but2'/>
         </>
         }
@@ -468,6 +477,43 @@ return  (
 
 export default BugId;
 
+const Wrap = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* margin-top: 250px; */
+  margin: 0 30px;
+  cursor: pointer;
+  border-radius: 25px;
+  box-shadow: rgb(0 0 0 / 12%) 0px 26px 30px -10px,
+    rgb(0 0 0 / 73%) 0px 16px 10px -10px;
+  transition: all 250ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 0s;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  p {
+    font-weight: 100;
+    padding: 0 20px;
+    color: black;
+    background-size: contain;
+    border-radius: 2px;
+  }
+
+  &:hover {
+    transform: scale(1.05);
+    p {
+      font-weight: 400;
+    }
+  }
+
+  @media (max-width: 768px) {
+    margin-top: 20px;
+  }
+`;
+
 
 
 //create 5 data flies, with one fly being the answer to current and prev questions
@@ -477,3 +523,8 @@ export default BugId;
 //at very end, need to have all the selected options output
 //need to be able to click on the fly
 //take to detail page that has it as main event, with potential flies to use under
+
+
+//color of button when Bug Id page to click image for home
+//bugId remains orange
+//when that button is clicked, change state on App to true, pass that value to SelectButtons
