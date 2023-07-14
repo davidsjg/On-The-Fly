@@ -370,7 +370,7 @@ return  (
 
 <div className={styles["mainContain"]}>
 
-    <Wrap onClick={resetData}>
+    <Wrap onClick={resetData} className={styles["resetBut"]} >
         <p>
         Reset
         </p>
@@ -378,7 +378,7 @@ return  (
 
 
     {counter === 0 &&
-        <Question myProp={'Was the bug above or below water?'} cName={'class1'}/>
+        <Question myProp={'Is the bug above or below water?'} cName={'class1'}/>
     }
     {counter === 1 &&
         <Question myProp={'What direction do the wings go?'} cName={'class1'}/>
@@ -406,7 +406,7 @@ return  (
         <View margin="3rem 0" className={styles["finalView"]} >
             {flies && 
                 flies.map((fly) => (
-                    <Link to={`/bugDetail/${fly.id}`} key={fly.id || fly.name}>
+                    <Link to={`/bugDetail/${fly.id}`} key={fly.id || fly.name} className={styles["finalLink"]} >
                     <Card className={styles["flyCardFinal"]} >
                         {fly.image && (
                         <Image

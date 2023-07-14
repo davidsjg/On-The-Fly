@@ -4,6 +4,7 @@
     /* justify-content: space-evenly; */
     align-items: center;
     height: 1000px;
+    margin-top: -20px;
 }
 
 .centerContain{
@@ -60,6 +61,8 @@
       margin: 0 50px;
     border-color: black; 
     border-width: 2px; 
+    background-color: #5cb9ff;
+    text-decoration: none;
 }
 
 .finalView{
@@ -107,4 +110,13 @@
 .img1{
     height: 100px;
     border-radius: 2px;
+}
+
+.finalLink{
+    text-decoration: none;
+    color: white;
+}
+
+.restBut{
+
 }
