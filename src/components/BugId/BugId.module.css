@@ -31,6 +31,7 @@
     border: 2px solid black;
     width: 200px;
     height: 300px;
+    margin: 10px 10px;
 }
 
 .flyView{
@@ -105,4 +106,5 @@
 
 .img1{
     height: 100px;
+    border-radius: 2px;
 }
