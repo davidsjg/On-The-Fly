@@ -4,6 +4,16 @@ import styles from "./BugDetail.module.css";
 import { useLocation } from "react-router-dom";
 import { listNotes } from '../../graphql/queries';
 import { API, Storage } from 'aws-amplify';
+import {
+    Button,
+    Flex,
+    Heading,
+    Image,
+    Text,
+    TextField,
+    View,
+    Card
+  } from '@aws-amplify/ui-react';
 
 
 function BugDetail() {
@@ -31,60 +41,63 @@ function BugDetail() {
           })
         );
 
-        console.log(fliesFromAPI)
-
         const finalFly = fliesFromAPI.filter((fly) => fly.id === result)
-
-        // fliesFromAPI.map((fly) => {
-        //     console.log(fly.id);
-        //     if(fly.Id === result){
-        //         console.log('they equal')
-        //     }
-        // })
-
-        console.log(finalFly[0]);
-
         setFly(finalFly[0]);
       }
 
 return  (
 
 <div className={styles["mainContain"]}>
-    <div className={styles["leftHeader"]}>
+
+    <div className={styles["topHeader"]}>
         <div className={styles["navMenu"]}>
-          
-
-       
-        </div>
-    </div>
-
-    <div className={styles["centerHeader"]}>
-        <div className={styles["centerHeader2"]}>
-            <div className={styles["navMenu"]}>
-            
-            BUG DETAIL PAGE
-
             {fly &&
                 <>{fly.name}</>
-
             }
-
-            </div>
         </div>
     </div>
-
-    <div className={styles["rightHeader"]}>
+    <div className={styles["middleHeader"]}>
         <div className={styles["navMenu"]}>
-     
-                {/* <Link
-                to="/"
-                className={styles['spanStyle']} 
-                >
-                <span>Home</span>
-                </Link> */}
-       
+            {fly &&
+                <>{fly.name}</>
+            }
         </div>
     </div>
+    <div className={styles["helloContain"]}>
+        <div className={styles["navMenu"]}>
+            {/* {fly &&
+                <>{fly.name}</>
+            } */}
+            sup
+        </div>
+    </div>
+    <div className={styles["dataContain"]}>
+        <div className={styles["flyImage"]}>
+            <View margin="3rem 0" className={styles["finalView"]} >
+                {fly && 
+                        <Card className={styles["flyCardFinal"]} >
+                            {fly.image && (
+                                <Image
+                                    src={fly.image}
+                                    alt={`visual aid for ${fly.name}`}
+                                    className={styles["finalImg"]}
+                                />       
+                            )}
+                        </Card>
+                }
+            </View>
+        </div>
+        <div className={styles["flyImage"]}>
+            <View margin="3rem 0" className={styles["finalView"]} >
+                {fly && 
+                        <Card className={styles["flyCardFinal"]} >
+                            {fly.category}
+                        </Card>
+                }
+            </View>
+        </div>
+    </div>
+
 </div>
 );
 }

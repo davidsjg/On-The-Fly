@@ -401,8 +401,8 @@ return  (
         <View margin="3rem 0" className={styles["finalView"]} >
             {flies && 
                 flies.map((fly) => (
-                    <Link to={`/bugDetail/${fly.id}`}>
-                    <Card className={styles["flyCardFinal"]} key={fly.id || fly.name}>
+                    <Link to={`/bugDetail/${fly.id}`} key={fly.id || fly.name}>
+                    <Card className={styles["flyCardFinal"]} >
                         {fly.image && (
                         <Image
                             src={fly.image}
