@@ -23,6 +23,8 @@ function BugId() {
 
 const [counter, setCounter] = useState(0);
 const [flies, setFlies] = useState();
+const [fliesAbove, setFliesAbove] = useState();
+const [fliesBelow, setFliesBelow] = useState();
 
 
 const [flyData, setFlyData] = useState({ imitates: '', above: '', wingsOut : false, flat: false, wingsDesc: '', overBack : false, tented : false, upright: false, legs : '', joints : '', tail : '', antennae : ''  });
@@ -89,22 +91,40 @@ function calcFlies(){
         setFlies(newFlies2);
     }
     }  
-    if (!flyData.above) {
-        const newFlies2 = flies && flies.filter((fly) => fly.above === false);
-        setFlies(newFlies2);
-        console.log(!flyData.legs);
-        console.log(!flyData.above);
-        if (!flyData.legs !== true && !flyData.above !== true) {
-            console.log('inside bullshit')
-            const newFlies2 = flies && flies.filter((fly) => fly.legs === false);
-            const newFlies3 = newFlies2 && newFlies2.filter((fly) => fly.above === false);
-            setFlies(newFlies3);    
-    }
+    // if (!flyData.above) {
+    //     const newFlies2 = flies && flies.filter((fly) => fly.above === false);
+    //     setFlies(newFlies2);
+    //     console.log(!flyData.legs);
+    //     console.log(!flyData.above);
+
+    // }
+
+    console.log(flyData.legs)
+
+    if (flyData.legs === false) {
+        const newFlies2 = flies && flies.filter((fly) => fly.legs === false);
+        setFlies(newFlies2);    
+    } else if (flyData.legs === true){
+        const newFlies2 = flies && flies.filter((fly) => fly.legs === true);
+        setFlies(newFlies2);   
     }
 
-    console.log(flyData.legs);
-    console.log(flyData.above);
-    console.log(!flyData.legs && !flyData.above);
+    if (flyData.joints === true){
+        const newFlies5 = flies && flies.filter((fly) => fly.legsJointed === true);
+        setFlies(newFlies5);   
+    } else if (flyData.joints === false){
+        const newFlies5 = flies && flies.filter((fly) => fly.legsJointed === false);
+        setFlies(newFlies5);  
+    }
+
+
+    // else if (flyData.joints !== true){
+    //     const newFlies2 = flies && flies.filter((fly) => fly.legsJointed === false);
+    //     setFlies(newFlies2);   
+    // }
+
+    console.log(flyData.joints);
+
 
 
 
@@ -165,6 +185,14 @@ async function fetchFlies() {
     );
 
     const finalFlies = fliesFromAPI.filter((fly) => fly.imitates === "")
+    const aboveFlies = finalFlies.filter((fly) => fly.above === true)
+    const belowFlies = finalFlies.filter((fly) => fly.above !== true)
+
+    console.log(aboveFlies);
+    console.log(belowFlies);
+
+    setFliesAbove(aboveFlies);
+    setFliesBelow(belowFlies);
 
     setFlies(finalFlies);
   }
@@ -199,6 +227,7 @@ async function fetchFlies() {
                 above : true
             })
             setCounter(1);
+            setFlies(fliesAbove);
             console.log('above = true');
           break;
         case 1:
@@ -216,7 +245,6 @@ async function fetchFlies() {
                 flat : true
             })
             setCounter(100)   //end
-            setData();
           break;
         case 3:
             console.log('has legs')
@@ -233,7 +261,6 @@ async function fetchFlies() {
                 joints : true
             })
             setCounter(5)   //end
-            setData();
           break;
         case 5:
             console.log('has tail')
@@ -242,7 +269,6 @@ async function fetchFlies() {
                 tail : true
             })
             setCounter(6)   //end
-            setData();
           break;
         case 6:
             console.log('has antennae')
@@ -251,7 +277,6 @@ async function fetchFlies() {
                 antennae : true
             })
             setCounter(100)   //end
-            setData();
           break;
         case 100:
             setData();
@@ -273,8 +298,8 @@ async function fetchFlies() {
                 above : false
             })
             setCounter(3);
+            setFlies(fliesBelow);
             console.log("above is false");
-            setData();
           break;
         case 1:
             console.log('over back')
@@ -283,7 +308,6 @@ async function fetchFlies() {
                 overBack : true
             })
             setCounter(2)   
-            setData();
           break;
         case 2:
             console.log('tented')
@@ -292,7 +316,6 @@ async function fetchFlies() {
                 tented : true
             })
             setCounter(100)   //end
-            setData();
           break;
         case 3:
             console.log('no legs')
@@ -301,7 +324,6 @@ async function fetchFlies() {
                 legs : false
             })
             setCounter(100)   //end
-            setData();
           break;
         case 4:
             console.log('no joints')
@@ -326,7 +348,6 @@ async function fetchFlies() {
                 antennae : false
             })
             setCounter(100)   //end
-            setData();
           break;
         case 100:
             setData();
@@ -346,12 +367,11 @@ async function fetchFlies() {
             upright : true
         })        
         setCounter(100);
-        setData();
     }
   }
 
   function resetData(){
-    const blankDataObj = { above: '', wingsOut : false, flat: false, wingsDesc: '', overBack : false, tented : false, upright: false, legs : false, joints : false, tail : false, antennae : false  }
+    const blankDataObj = { imitates: '', above: '', wingsOut : false, flat: false, wingsDesc: '', overBack : false, tented : false, upright: false, legs : '', joints : '', tail : '', antennae : ''  }
     setCounter(0);
     setFlyData(blankDataObj);
     fetchFlies();
