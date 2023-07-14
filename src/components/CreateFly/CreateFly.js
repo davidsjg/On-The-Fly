@@ -21,7 +21,7 @@ import { CheckboxField, Radio, RadioGroupField } from "@aws-amplify/ui-react";
 
 function CreateFly () {
   const [flies, setFlies] = useState([]);
-  const [flyData, setFlyData] = useState({ above: '', legs : false, joints : false, tail : '', antennae : false, wingsOut : '' });
+  const [flyData, setFlyData] = useState({ above: '', legs : '', joints : '', tail : '', antennae : '', wingsOut : '' });
 
 
   useEffect(() => {
@@ -241,6 +241,11 @@ function CreateFly () {
             <Text>
             {fly.tail === true && 
             <>tail</>
+            }
+            </Text>   
+            <Text>
+            {fly.legsJointed === true && 
+            <>joints</>
             }
             </Text>   
  

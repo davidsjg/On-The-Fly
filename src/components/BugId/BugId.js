@@ -100,7 +100,8 @@ function calcFlies(){
     if (flyData.joints === true){
         const newFlies5 = flies && flies.filter((fly) => fly.legsJointed === true);
         setFlies(newFlies5);   
-    } else if (flyData.joints === false){
+    } 
+    if (flyData.joints === false){
         const newFlies5 = flies && flies.filter((fly) => fly.legsJointed === false);
         setFlies(newFlies5);  
     }
@@ -115,7 +116,7 @@ function calcFlies(){
     } 
     if (flyData.tail === false){
         console.log('inside false')
-        const newFlies6 = flies && flies.filter((fly) => fly.tail === false);
+        const newFlies6 = flies && flies.filter((fly) => fly.tail !== true);
         setFlies(newFlies6);         
     }
 
@@ -127,10 +128,6 @@ function calcFlies(){
         setFlies(newFlies5);      
     }
     
-
-
-    console.log(flyData.tail);
-
 
 
 
@@ -235,7 +232,7 @@ async function fetchFlies() {
                 ...flyData,
                 tail : true
             })
-            setCounter(6)   //end
+            setCounter(100)   //end
           break;
         case 6:
             console.log('has antennae')
@@ -306,7 +303,7 @@ async function fetchFlies() {
                 ...flyData,
                 tail : false
             })
-            setCounter(100)   
+            setCounter(6)   
           break;
         case 6:
             console.log('no antennae')
