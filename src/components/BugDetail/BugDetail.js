@@ -17,7 +17,10 @@ import {
 
 
 function BugDetail() {
-    const [fly, setFly] = useState();
+    const [finalFly, setFinalFly] = useState();
+    const [otherFlies, setOtherFlies] = useState();
+    const [finalWing, setFinalWing] = useState();
+    const [finalWingDesc, setFinalWingDesc] = useState();
     const location = useLocation()
     const curUrl = location.pathname;
     let result = curUrl.replace(/\/bugDetail\//i, "");
@@ -42,62 +45,159 @@ function BugDetail() {
         );
 
         const finalFly = fliesFromAPI.filter((fly) => fly.id === result)
-        setFly(finalFly[0]);
+        console.log(finalFly);
+        setFinalFly(finalFly[0]);
+
+        const theFlies = fliesFromAPI.filter((fly) => fly.imitates !== "")
+        console.log(theFlies);
+
+        const myFlies = theFlies.filter((myFly) => myFly.category === finalFly[0].category);
+
+        console.log(myFlies)
+
+        // console.log(myFlies);
+
+        setOtherFlies(myFlies);
+
+
+        if(finalFly[0].wingsOut === true ){
+            setFinalWing('True');
+        }
+
+        if(finalFly[0].wingsDesc === null){
+            setFinalWingDesc('n/a')
+        }
+
+
+
+
       }
 
 return  (
 
 <div className={styles["mainContain"]}>
 
-    <div className={styles["topHeader"]}>
-        <div className={styles["navMenu"]}>
-            {fly &&
-                <>{fly.name}</>
-            }
-        </div>
-    </div>
-    <div className={styles["middleHeader"]}>
-        <div className={styles["navMenu"]}>
-            {fly &&
-                <>{fly.name}</>
-            }
-        </div>
-    </div>
-    <div className={styles["helloContain"]}>
-        <div className={styles["navMenu"]}>
-            {/* {fly &&
-                <>{fly.name}</>
-            } */}
-            sup
-        </div>
-    </div>
+    {/* <div className={styles["finalView"]}>
+    </div> */}
+
     <div className={styles["dataContain"]}>
-        <div className={styles["flyImage"]}>
-            <View margin="3rem 0" className={styles["finalView"]} >
-                {fly && 
-                        <Card className={styles["flyCardFinal"]} >
-                            {fly.image && (
-                                <Image
-                                    src={fly.image}
-                                    alt={`visual aid for ${fly.name}`}
-                                    className={styles["finalImg"]}
-                                />       
-                            )}
-                        </Card>
-                }
-            </View>
+        <div className={styles["dataContain2"]}>
+            <div className={styles["fliesToUse"]} >
+                            Selected Fly
+            </div>
+            <Card className={styles["flyCardFinal"]} >
+                <div className={styles["leftData"]}>
+                    {finalFly && (
+                        <Image
+                            src={finalFly.image}
+                            alt={`visual aid for ${finalFly && finalFly.name}`}
+                            className={styles["finalBugImg"]}
+                        />       
+                    )}
+                </div>
+                <div className={styles["rightData"]}>
+                    <div as="strong" fontWeight={700} >
+                        {finalFly && finalFly.name}
+                    </div>
+                    <div as="strong" fontWeight={700} >
+                        Category : {finalFly && finalFly.category} 
+                    </div>
+                    {finalFly &&
+                     finalFly.wingsDesc &&
+                        // finalFly.wingsDesc &&
+                        <div as="strong" fontWeight={700} >
+                        Wing Orientation : {finalFly && finalFly.wingsDesc} 
+                        </div>   
+                    }
+                    {finalWingDesc &&
+                        // finalFly.wingsDesc &&
+                        <div as="strong" fontWeight={700} >
+                        Wing Orientation : {finalWingDesc} 
+                        </div>   
+                    }
+                    {finalFly &&
+                        <div as="strong" fontWeight={700} >
+                        Wings out : {finalWing} 
+                        </div>   
+                    }
+
+                </div>
+            </Card>
         </div>
-        <div className={styles["flyImage"]}>
-            <View margin="3rem 0" className={styles["finalView"]} >
-                {fly && 
-                        <Card className={styles["flyCardFinal"]} >
-                            {fly.category}
-                        </Card>
-                }
-            </View>
+        <div className={styles["separator"]} >
+            - <br/>
+            - <br/>
+            - <br/>
+            - <br/>
+            - <br/>
+            - <br/>
+            - <br/>
+            - <br/>
+            - <br/>
+            - <br/>
+            - <br/>
+            - <br/>
+            - <br/>
+            - <br/>
+            - <br/>
+
+        </div>
+        <div className={styles["otherFlies2"]}>
+            <div className={styles["fliesToUse"]} >
+                    Flies to Use
+            </div>
+            <div className={styles["otherFlies"]}>
+            {otherFlies && 
+                otherFlies.map((fly) => {
+                    return(
+                        (
+                            <>
+                            <Card className={styles["flyCardFinal"]} >
+                                <div className={styles["leftData"]}>
+                                    <Image
+                                        src={fly.image}
+                                        alt={`visual aid for ${fly && fly.name}`}
+                                        className={styles["finalImg"]}
+                                    />       
+                                    <div>
+                                        Name: {fly.name}
+                                    </div>
+                                    <div>
+                                        Category: {fly.category}
+                                    </div>
+                                    <div>
+                                        Imitates: {fly.imitates}
+                                    </div>
+                                    <div>
+                                        Size: {fly.size}
+                                    </div>
+                                </div>
+                            </Card>
+                        </>
+                        )
+                    )
+                })
+            }                     
+            </div>
+                       
+
+        </div>
+        <div>
+
         </div>
     </div>
 
+            
+    <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
 </div>
 );
 }
