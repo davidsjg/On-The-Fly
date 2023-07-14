@@ -370,7 +370,12 @@ return  (
 
 <div className={styles["mainContain"]}>
 
-    <button onClick={resetData}>Reset</button>
+    <Wrap onClick={resetData}>
+        <p>
+        Reset
+        </p>
+    </Wrap>
+
 
     {counter === 0 &&
         <Question myProp={'Was the bug above or below water?'} cName={'class1'}/>
@@ -425,8 +430,10 @@ return  (
     <div className={styles["centerContain"]}>
         {counter === 0 &&
         <>
-        <ButtonAnswer answer='Above' updateCounter={updateCounter} butt='but1' />  {/*cName={'class2'} */}
-        <ButtonAnswer answer='Below' updateCounter={updateCounter} butt='but2'/>
+        {/* <ButtonAnswer answer='Above' updateCounter={updateCounter} butt='but1' /> 
+        <ButtonAnswer answer='Below' updateCounter={updateCounter} butt='but2'/> */}
+        <ButtonAnswer answer='Above' updateCounter={updateCounter} butt='but1' ></ButtonAnswer>
+        <ButtonAnswer answer='Below' updateCounter={updateCounter} butt='but2'></ButtonAnswer>
         </>
         }
         {counter === 1 &&
@@ -507,19 +514,16 @@ const Wrap = styled.div`
   align-items: center;
   /* margin-top: 250px; */
   margin: 0 30px;
+  background-color: darkgreen;
   cursor: pointer;
   border-radius: 25px;
   box-shadow: rgb(0 0 0 / 12%) 0px 26px 30px -10px,
     rgb(0 0 0 / 73%) 0px 16px 10px -10px;
   transition: all 250ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 0s;
 
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
+
   p {
-    font-weight: 100;
+    font-weight: 500;
     padding: 0 20px;
     color: black;
     background-size: contain;
