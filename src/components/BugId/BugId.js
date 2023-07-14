@@ -395,9 +395,13 @@ return  (
     }
     {counter === 100 &&
         <>    
-        <View margin="3rem 0"className={styles["finalView"]} >
+        <div className={styles["endSearch"]}>
+        End of Search - Click Bug to Learn More!  
+        </div>
+        <View margin="3rem 0" className={styles["finalView"]} >
             {flies && 
                 flies.map((fly) => (
+                    <Link to={`/bugDetail/${fly.id}`}>
                     <Card className={styles["flyCardFinal"]} key={fly.id || fly.name}>
                         {fly.image && (
                         <Image
@@ -410,6 +414,8 @@ return  (
                         {fly.name}
                         </div>
                     </Card>
+                    </Link>
+
             ))}
         </View>
     </>
