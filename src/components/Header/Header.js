@@ -25,13 +25,7 @@ return  (
             <div className={styles["navMenu"]}>
             
                     <Link to="/" >
-                        {/* <span className={styles['otf']}>
-                            <h1 className={styles['otf']} >
-                                On The Fly!
-                            </h1>
-                        </span> */}
-                        <img src='https://i.imgur.com/VZ8RA0o.png' className={styles['otfImage']}>
-                            </img> 
+                        <img src='https://i.imgur.com/VZ8RA0o.png' className={styles['otfImage']} alt='fish logo'/>
                     </Link>
                
             </div>

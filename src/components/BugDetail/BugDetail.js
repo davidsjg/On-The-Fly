@@ -1,17 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
 import styles from "./BugDetail.module.css";
-import { useLocation } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
 import { listNotes } from '../../graphql/queries';
 import { API, Storage } from 'aws-amplify';
 import {
-    Button,
-    Flex,
-    Heading,
     Image,
-    Text,
-    TextField,
-    View,
     Card
   } from '@aws-amplify/ui-react';
 
@@ -190,7 +183,11 @@ return  (
         </div>
     </div>
 
-            
+    <Link to='/'>
+    <button className={styles["findAnother"]} oncli>
+        Find Another Bug!
+    </button>
+    </Link>
     <br/>
         <br/>
         <br/>

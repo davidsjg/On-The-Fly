@@ -12,6 +12,7 @@ function SelectButtons() {
   const [uploadHike, setUploadHike] = useState(false);
   const [explore, setExplore] = useState(false);
   const [myHikes, setMyHikes] = useState(false);
+  const [reload, setReload] = useState();
 
   const [urlChange, setUrlChange] = useState(false);
 
@@ -24,7 +25,7 @@ function SelectButtons() {
       setUploadHike(true);
       setExplore(false);
       setMyHikes(false);
-    } else if (currUrl === "/") {
+    } else if (currUrl === "/bugs") {
       setUploadHike(false);
       setExplore(true);
       setMyHikes(false);
@@ -50,58 +51,37 @@ function SelectButtons() {
     }
   }
 
+  function reloadPage(){
+    // window.navigator("/");
+  }
+
   return (
     <>
       <MainContain cName={styles["mainContain"]}>
         <div className={styles["allButtons"]} onClick={updateUrl}>
-        {explore ? (
-            // <div className={`${styles.selectButton2} `}>
-            //   <p>Explore Bugs</p>
-            // </div>
+        {/* {explore ? (
             <WrapComp buttonText={'Explore Bugs'}/>
 
           ) : (
             <Link to="/bugs">
-              {/* <div className={`${styles.selectButton}`}>
-                <p>Explore Bugs</p>
-              </div> */}
               <WrapComp2 buttonText={'Explore Bugs'}/>
 
             </Link>
-          )}
-          {uploadHike ? (
-            // <div className={`${styles.selectButton2} `}>
-            //   <p>Bug Identifier</p>
-            // </div>
+          )} */}
+          {/* {uploadHike ? (
             <WrapComp buttonText={'Bug Identifier'}/>
           ) : (
-            // <Link to="/bugId">
-            //   <div className={`${styles.selectButton}`}>
-            //     <p>Bug Identifier</p>
-            //   </div>
-            // </Link>
-            <Link to="/">
-              {/* <WrapComp buttonText={'Bug Identifier'}/> */}
+            <Link to="/" onClick={reloadPage}>
               <WrapComp2 buttonText={'Bug Identifier'}/>
             </Link>
-
-
-          )}
-          {myHikes ? (
-            // <div className={`${styles.selectButton2} `}>
-            //   <p>Create Fly</p>
-            // </div>
+          )} */}
+          {/* {myHikes ? (
               <WrapComp buttonText={'Create Fly'}/>
-
           ) : (
             <Link to="/createFly">
-              {/* <div className={`${styles.selectButton}`}>
-                <p>Create Fly</p>
-              </div> */}
               <WrapComp2 buttonText={'Create Fly'}/>
-
             </Link>
-          )}
+          )} */}
         </div>
       </MainContain>
     </>

@@ -82,3 +82,14 @@
     background-color: black;
     margin-left: 10px;
 }
+
+.findAnother{
+    margin-top: 20px;
+    height: 150px;
+    width: 250px;
+    font-size: x-large;
+}
+
+.findAnother:hover{
+    cursor: pointer;
+}
