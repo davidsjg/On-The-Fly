@@ -56,13 +56,10 @@ function calcImitate(){
 function calcFlies(){
     //have all the flies
     //have a fly to compare it against
-    console.log(flyData);
 
-    flies && console.log(flies);
 
-    flies && flies.map((fly) => {
-        console.log(fly)
-    })
+    // flies && flies.map((fly) => {
+    // })
 
 
     if(flyData.above) {
@@ -91,15 +88,6 @@ function calcFlies(){
         setFlies(newFlies2);
     }
     }  
-    // if (!flyData.above) {
-    //     const newFlies2 = flies && flies.filter((fly) => fly.above === false);
-    //     setFlies(newFlies2);
-    //     console.log(!flyData.legs);
-    //     console.log(!flyData.above);
-
-    // }
-
-    console.log(flyData.legs)
 
     if (flyData.legs === false) {
         const newFlies2 = flies && flies.filter((fly) => fly.legs === false);
@@ -117,56 +105,39 @@ function calcFlies(){
         setFlies(newFlies5);  
     }
 
+    console.log(flies);
+    console.log(flyData);
 
-    // else if (flyData.joints !== true){
-    //     const newFlies2 = flies && flies.filter((fly) => fly.legsJointed === false);
-    //     setFlies(newFlies2);   
-    // }
+    if (flyData.tail === true){
+        console.log('fly tail = true')
+        const newFlies5 = flies && flies.filter((fly) => fly.tail === true);
+        setFlies(newFlies5);  
+    } 
+    if (flyData.tail === false){
+        console.log('inside false')
+        const newFlies6 = flies && flies.filter((fly) => fly.tail === false);
+        setFlies(newFlies6);         
+    }
 
-    console.log(flyData.joints);
-
-
-
-
-    // if(flyData.above === false) {
-
-    //     const newFlies5 = (flies || []).filter((fly) => fly.above === false);
-    //     // const newFlies = flies.filter((fly) => fly.above === false);
-    //     // console.log(newFlies);
-    //     setFlies(newFlies5);
-
-
-    // }
-
-
-
-    // if(flyData.legs === true && flyData.above !== true){
-    //     const newFlies2 = (flies || []).filter((fly) => fly.legs === true);
-    //     setFlies(newFlies2);    
-
-    // } else if (flyData.legs === true && flyData.above !== true) {
-    //     const newFlies2 = (flies || []).filter((fly) => fly.legs === false);
-    //     setFlies(newFlies2);    
-    // }
-    // if(flyData.joints === true){
-    //     console.log('inside joints');
-    //     const newFlies3 = (flies || []).filter((fly) => fly.legsJointed === true);
-    //     console.log(newFlies3);
-    //     setFlies(newFlies3);     
-    // } 
+    if(flyData.antennae === true){
+        const newFlies5 = flies.filter((fly) => fly.antennae === true);
+        setFlies(newFlies5);      
+    } else if (flyData.antennae === false){
+        const newFlies5 = flies.filter((fly) => fly.antennae === false);
+        setFlies(newFlies5);      
+    }
     
-    // if(flyData.tail === true){
-    //     const newFlies4 = flies.filter((fly) => fly.tail === true);
-    //     console.log(newFlies4);
-    //     setFlies(newFlies4);  
 
-    // }     
 
-    // if(flyData.antennae === true){
-    //     const newFlies5 = flies.filter((fly) => fly.antennae === true);
-    //     console.log(newFlies5);
-    //     setFlies(newFlies5);      
-    // }
+    console.log(flyData.tail);
+
+
+
+
+
+
+ 
+
 
 
 }
@@ -188,9 +159,6 @@ async function fetchFlies() {
     const aboveFlies = finalFlies.filter((fly) => fly.above === true)
     const belowFlies = finalFlies.filter((fly) => fly.above !== true)
 
-    console.log(aboveFlies);
-    console.log(belowFlies);
-
     setFliesAbove(aboveFlies);
     setFliesBelow(belowFlies);
 
@@ -198,7 +166,6 @@ async function fetchFlies() {
   }
 
   function updateCounter(e){
-    console.log(e);
     if(e === 'but1'){
         butt1();
     } else if (e === 'but2') {
@@ -339,7 +306,7 @@ async function fetchFlies() {
                 ...flyData,
                 tail : false
             })
-            setCounter(6)   
+            setCounter(100)   
           break;
         case 6:
             console.log('no antennae')
@@ -473,12 +440,6 @@ return  (
         <>
         <ButtonAnswer answer='Has Antennae' updateCounter={updateCounter} butt='but1'/>
         <ButtonAnswer answer='No Antennae' updateCounter={updateCounter} butt='but2'/>
-            <button className={styles["navMenu"]} onClick={() => updateCounter('but1')}>  
-                Has Antennae
-            </button>
-            <button className={styles["navMenu"]} onClick={() => updateCounter('but2')}>
-                No Antennae   
-            </button>
         </>
         }
 
