@@ -525,7 +525,7 @@ const Wrap = styled.div`
   p {
     font-weight: 500;
     padding: 0 20px;
-    color: black;
+    color: white;
     background-size: contain;
     border-radius: 2px;
   }

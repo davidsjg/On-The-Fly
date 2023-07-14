@@ -9,10 +9,10 @@
 .centerContain{
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
+    /* justify-content: center; */
     align-items: center;
     height: 50px;
-    width: 500px;
+    width: 600px;
     border-width: 100px;
     border-color: black;
 }
