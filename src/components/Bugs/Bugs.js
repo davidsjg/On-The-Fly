@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import styles from "./HomePage.module.css";
+import styles from "./Bugs.module.css";
 
-function HomePage() {
+function Bugs() {
 
 return  (
 
@@ -34,4 +34,4 @@ return  (
 );
 }
 
-export default HomePage;
+export default Bugs;

@@ -20,7 +20,7 @@ function SelectButtons() {
   const myHikesSelected = !myHikes ? styles.myHikesOut : "";
 
   useEffect(() => {
-    if (currUrl === "/bugId") {
+    if (currUrl === "/") {
       setUploadHike(true);
       setExplore(false);
       setMyHikes(false);
@@ -54,6 +54,21 @@ function SelectButtons() {
     <>
       <MainContain cName={styles["mainContain"]}>
         <div className={styles["allButtons"]} onClick={updateUrl}>
+        {explore ? (
+            // <div className={`${styles.selectButton2} `}>
+            //   <p>Explore Bugs</p>
+            // </div>
+            <WrapComp buttonText={'Explore Bugs'}/>
+
+          ) : (
+            <Link to="/bugs">
+              {/* <div className={`${styles.selectButton}`}>
+                <p>Explore Bugs</p>
+              </div> */}
+              <WrapComp2 buttonText={'Explore Bugs'}/>
+
+            </Link>
+          )}
           {uploadHike ? (
             // <div className={`${styles.selectButton2} `}>
             //   <p>Bug Identifier</p>
@@ -65,27 +80,12 @@ function SelectButtons() {
             //     <p>Bug Identifier</p>
             //   </div>
             // </Link>
-            <Link to="/bugId">
+            <Link to="/">
               {/* <WrapComp buttonText={'Bug Identifier'}/> */}
               <WrapComp2 buttonText={'Bug Identifier'}/>
             </Link>
 
 
-          )}
-          {explore ? (
-            // <div className={`${styles.selectButton2} `}>
-            //   <p>Explore Bugs</p>
-            // </div>
-            <WrapComp buttonText={'Explore Bugs'}/>
-
-          ) : (
-            <Link to="/">
-              {/* <div className={`${styles.selectButton}`}>
-                <p>Explore Bugs</p>
-              </div> */}
-              <WrapComp2 buttonText={'Explore Bugs'}/>
-
-            </Link>
           )}
           {myHikes ? (
             // <div className={`${styles.selectButton2} `}>
