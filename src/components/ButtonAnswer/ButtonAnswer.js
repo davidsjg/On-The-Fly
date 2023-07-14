@@ -25,8 +25,9 @@ const Wrap = styled.div`
   display: flex;
   justify-content: center;
   align-items: space-between;
-
+  padding: 20px;
   margin: 0 20px;
+  margin-top: 30px;
   background-color:  #5cb9ff;
   cursor: pointer;
   border-radius: 20px;
