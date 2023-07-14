@@ -9,7 +9,7 @@ return  (
         {/* <button onClick={() => props.updateCounter(props.butt)}>  
             {props.answer}
         </button> */}
-        <Wrap onClick={() => props.updateCounter(props.butt)}>
+        <Wrap onClick={() => props.updateCounter(props.butt)} >
             <p>
             {props.answer}
             </p>
@@ -24,13 +24,12 @@ export default ButtonAnswer;
 const Wrap = styled.div`
   display: flex;
   justify-content: center;
-  align-items: center;
-  /* margin-top: 250px; */
-  margin: 0 30px;
+  align-items: space-between;
+
+  margin: 0 20px;
   background-color:  #5cb9ff;
-  width: 500px;
   cursor: pointer;
-  border-radius: 25px;
+  border-radius: 20px;
   box-shadow: rgb(0 0 0 / 12%) 0px 26px 30px -10px,
     rgb(0 0 0 / 73%) 0px 16px 10px -10px;
   transition: all 250ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 0s;

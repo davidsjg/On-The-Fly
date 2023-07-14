@@ -370,11 +370,11 @@ return  (
 
 <div className={styles["mainContain"]}>
 
-    <Wrap onClick={resetData} className={styles["resetBut"]} >
+    {/* <Wrap onClick={resetData} className={styles["resetBut"]} >
         <p>
         Reset
         </p>
-    </Wrap>
+    </Wrap> */}
 
 
     {counter === 0 &&
@@ -432,13 +432,23 @@ return  (
         <>
         {/* <ButtonAnswer answer='Above' updateCounter={updateCounter} butt='but1' /> 
         <ButtonAnswer answer='Below' updateCounter={updateCounter} butt='but2'/> */}
-        <ButtonAnswer answer='Above' updateCounter={updateCounter} butt='but1' ></ButtonAnswer>
-        <ButtonAnswer answer='Below' updateCounter={updateCounter} butt='but2'></ButtonAnswer>
+        <ButtonAnswer answer='Above' updateCounter={updateCounter} butt='but1' cName={'class2'}></ButtonAnswer>
+        <Wrap onClick={resetData} className={styles["resetBut"]} >
+            <p>
+                Reset
+            </p>
+        </Wrap>
+        <ButtonAnswer answer='Below' updateCounter={updateCounter} butt='but2' cName={'class2'}></ButtonAnswer>
         </>
         }
         {counter === 1 &&
         <>
         <ButtonAnswer answer='Out to Side' updateCounter={updateCounter} butt='but1'/>
+        <Wrap onClick={resetData} className={styles["resetBut"]} >
+            <p>
+                Reset
+            </p>
+        </Wrap>
         <ButtonAnswer answer='Over Back' updateCounter={updateCounter} butt='but2'/>
         </>
         }
@@ -446,31 +456,58 @@ return  (
         
         <>
         <ButtonAnswer answer='Flat over back' updateCounter={updateCounter} butt='but1'/>
+        
         <ButtonAnswer answer='Tented over back' updateCounter={updateCounter} butt='but2'/>
         <ButtonAnswer answer='Upright' updateCounter={updateCounter} butt='but3'/>
+        <br/>
+        <Wrap onClick={resetData} className={styles["resetBut"]} >
+            <p>
+                Reset
+            </p>
+        </Wrap>
         </>
         }
         {counter === 3 &&
         <>
         <ButtonAnswer answer='Has Legs' updateCounter={updateCounter} butt='but1'/>
+        <Wrap onClick={resetData} className={styles["resetBut"]} >
+            <p>
+                Reset
+            </p>
+        </Wrap>
         <ButtonAnswer answer='No Legs' updateCounter={updateCounter} butt='but2'/>
         </>
         }
         {counter === 4 &&
         <>
         <ButtonAnswer answer='Has Joints' updateCounter={updateCounter} butt='but1'/>
+        <Wrap onClick={resetData} className={styles["resetBut"]} >
+            <p>
+                Reset
+            </p>
+        </Wrap>
         <ButtonAnswer answer='No Joints' updateCounter={updateCounter} butt='but2'/>
         </>
         }
         {counter === 5 &&
         <>
         <ButtonAnswer answer='Has Tail' updateCounter={updateCounter} butt='but1'/>
+        <Wrap onClick={resetData} className={styles["resetBut"]} >
+            <p>
+                Reset
+            </p>
+        </Wrap>
         <ButtonAnswer answer='No Tail' updateCounter={updateCounter} butt='but2'/>
         </>
         }
         {counter === 6 &&
         <>
         <ButtonAnswer answer='Has Antennae' updateCounter={updateCounter} butt='but1'/>
+        <Wrap onClick={resetData} className={styles["resetBut"]} >
+            <p>
+                Reset
+            </p>
+        </Wrap>
         <ButtonAnswer answer='No Antennae' updateCounter={updateCounter} butt='but2'/>
         </>
         }
