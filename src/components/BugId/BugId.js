@@ -113,11 +113,19 @@ function calcFlies(){
         console.log('fly tail = true')
         const newFlies5 = flies && flies.filter((fly) => fly.tail === true);
         setFlies(newFlies5);  
+        if(newFlies5.length === 1){
+            setCounter(100);
+        }    
     } 
     if (flyData.tail === false){
         console.log('inside false')
+        console.log(flies);
         const newFlies6 = flies && flies.filter((fly) => fly.tail !== true);
-        setFlies(newFlies6);         
+        console.log(newFlies6);
+        setFlies(newFlies6);     
+        if(newFlies6.length === 1){
+            setCounter(100);
+        }    
     }
 
     if(flyData.antennae === true){
@@ -129,6 +137,16 @@ function calcFlies(){
     }
     
 
+
+    if(flies && flies.length === 1){
+        console.log('inside sow sow binks');
+        const newFlies5 = flies.filter((fly) => fly.name === 'Sowbug Nymph');
+        setFlies(newFlies5);        
+    }
+    if(flies && flies.length === 1 && flies[0].name === 'Dragonfly Nymph'){
+        const newFlies5 = flies.filter((fly) => fly.name === 'Dragonfly Nymph');
+        setFlies(newFlies5);        
+    }
 
 
 
@@ -232,7 +250,11 @@ async function fetchFlies() {
                 ...flyData,
                 tail : true
             })
-            setCounter(100)   //end
+            console.log(flies[0].name);
+            if(flies[0].name === 'Sowbug Nymph'){
+                setCounter(100);
+            }
+            setCounter(6)   //end
           break;
         case 6:
             console.log('has antennae')
@@ -303,7 +325,7 @@ async function fetchFlies() {
                 ...flyData,
                 tail : false
             })
-            setCounter(6)   
+            setCounter(6)  
           break;
         case 6:
             console.log('no antennae')
