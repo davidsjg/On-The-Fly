@@ -51,7 +51,10 @@ function BugDetail() {
         const theFlies = fliesFromAPI.filter((fly) => fly.imitates !== "")
         console.log(theFlies);
 
-        const myFlies = theFlies.filter((myFly) => myFly.category === finalFly[0].category);
+        console.log(theFlies[0].name);
+        finalFly && console.log(finalFly[0].imitates)
+
+        const myFlies = theFlies.filter((myFly) => myFly.imitates === finalFly[0].name);
 
         console.log(myFlies)
 

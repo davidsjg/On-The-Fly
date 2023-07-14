@@ -474,24 +474,27 @@ return  (
     <View margin="3rem 0"className={styles["flyView"]} >
         {flies && 
         flies.map((fly) => (
-            <Card className={styles["flyCard"]} key={fly.id || fly.name}>
-                {fly.image && (
-                <Image
-                    src={fly.image}
-                    alt={`visual aid for ${flies.name}`}
-                    style={{ height: 40 }}
-                />       
-                )}
-
-                ---------
-            
-                <Text as="strong" fontWeight={700}>
-                {fly.name}
-                </Text>
-            </Card>
+            <Link to={`/bugDetail/${fly.id}`} key={fly.id || fly.name} className={styles["someCard"]} >
+                <Card className={styles["flyCard"]} >
+                    {fly.image && (
+                    <Image
+                        src={fly.image}
+                        alt={`visual aid for ${flies.name}`}
+                        className={styles["img1"]} 
+                    />       
+                    )}
+                    <div className={styles["separator"]} >
+                        
+                    </div>
+                    <Text as="strong" fontWeight={700}>
+                    {fly.name}
+                    </Text>
+                </Card>
+            </Link>
         ))}
     </View>
     }
+
 </div>
 );
 }

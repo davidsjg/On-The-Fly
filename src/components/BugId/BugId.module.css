@@ -3,7 +3,7 @@
     flex-direction: column;
     /* justify-content: space-evenly; */
     align-items: center;
-    height: 700px;
+    height: 1000px;
 }
 
 .centerContain{
@@ -29,14 +29,17 @@
     align-items: center;
     width: 150px; /*or whatever size card you want*/
     border: 2px solid black;
+    width: 200px;
+    height: 300px;
 }
 
 .flyView{
-    width: 100%;/*whatever size you want your container*/
-    /* border: 3px solid black; */
-    display: flex; /*Make sure to call this on your container*/
-    align-items: stretch; /*stretches all cards same height*/
-    justify-content: space-around; /*some space between cards*/
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+
 }
 
 .catName{
@@ -86,4 +89,20 @@
 .endSearch{
     margin-top: 20px;
     font-size: larger;
+}
+
+.someCard{
+    text-decoration: none;
+}
+
+.separator{
+    background-color: black;
+    color: black;
+    height: 5px;
+    border-width: 1px;
+    border-color: black;
+}
+
+.img1{
+    height: 100px;
 }
