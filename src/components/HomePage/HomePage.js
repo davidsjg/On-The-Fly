@@ -1,6 +1,6 @@
 import React, { useState, useEffect} from 'react';
 import { Link } from 'react-router-dom';
-import styles from "./BugId.module.css";
+import styles from "./HomePagte.module.css";
 import { API, Storage } from 'aws-amplify';
 import { listNotes } from '../../graphql/queries';
 import {
@@ -17,10 +17,9 @@ import Question from '../Question/Question';
 import ButtonAnswer from '../ButtonAnswer/ButtonAnswer';
 import styled from "styled-components";
 import WrapComp from '../WrapComp/WrapComp';
-import Header from '../Header/Header';
 
 
-function BugId() {
+function HomePage() {
 
 const [counter, setCounter] = useState(0);
 const [flies,    setFlies] = useState();
@@ -376,10 +375,9 @@ async function fetchFlies() {
 
 
 return  (
-    <>
-
 
 <div className={styles["mainContain"]}>
+
     {/* {buttonState ? (
            <Wrap onClick={resetData} className={styles["resetBut"]} >
            <p>
@@ -563,11 +561,10 @@ return  (
     }
 
 </div>
-</>
 );
 }
 
-export default BugId;
+export default HomePage;
 
 const Wrap = styled.div`
   display: flex;

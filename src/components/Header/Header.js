@@ -1,8 +1,24 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, {useEffect, useState} from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import styles from "./Header.module.css";
 
 function Header() {
+
+    const navigate = useNavigate();
+
+    const [goHome, setGoHome] = useState();
+
+    useEffect(() => {
+            //    window.location.reload(false); 
+
+    }, [goHome]);
+
+
+    function pageReload() {
+        setGoHome(!goHome);
+        // navigate('/');
+       // window.location.reload(false); 
+    }
 
 return  (
 
@@ -25,7 +41,7 @@ return  (
             <div className={styles["navMenu"]}>
             
                     <Link to="/" >
-                        <img src='https://i.imgur.com/VZ8RA0o.png' className={styles['otfImage']} alt='fish logo'/>
+                        <img src='https://i.imgur.com/VZ8RA0o.png' className={styles['otfImage']} alt='fish logo' onClick={pageReload}/>
                     </Link>
                
             </div>

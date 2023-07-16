@@ -24,6 +24,7 @@ const Wrap = styled.div`
   /* margin-top: 250px; */
   margin: 0 30px;
   cursor: pointer;
+
   border-radius: 10px;
   box-shadow: rgb(0 0 0 / 12%) 0px 26px 30px -10px,
     rgb(0 0 0 / 73%) 0px 16px 10px -10px;

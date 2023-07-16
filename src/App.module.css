@@ -1,4 +1,4 @@
-.App {
+/* .App {
   text-align: center;
 }
 
@@ -35,7 +35,7 @@
   to {
     transform: rotate(360deg);
   }
-}
+} */
 
 
 .appContain{
@@ -43,4 +43,5 @@
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  margin-top: -20px;
 }

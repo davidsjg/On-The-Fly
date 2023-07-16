@@ -91,14 +91,8 @@
 }
 
 .endSearch{
-    font-size: x-large;
-    /* margin-top: 20px;
-    margin-bottom: 20px; */
-    margin: 20px 0;
-    border-radius: 5px;
-    transition: 120ms;
-    background-color: white;
-    padding: 20px 20px;
+    margin-top: 20px;
+    font-size: larger;
 }
 
 .someCard{

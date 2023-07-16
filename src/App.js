@@ -8,16 +8,20 @@ import Header from "./components/Header/Header"
 import SelectButtons from "./components/SelectButtons/SelectButtons";
 import styles from "./App.module.css";
 import Bugs from "./components/Bugs/Bugs";
+import HomePage from "./components/HomePage/HomePage";
 
 function App() {
+
+
 return (
   <div className={styles["appContain"]}>
-    <Header/>
+<Header/>
     <SelectButtons/>
     <Routes>
       <Route path="/bugs" exact Component={Bugs}/>
       <Route path="/createFly" Component={CreateFly}/>
       <Route path="/" Component={BugId}/>
+      {/* <Route path="/bugId" Component={BugId}/> */}
       <Route path="/bugDetail/:bugId" Component={BugDetail}/>
     </Routes>
   </div>
