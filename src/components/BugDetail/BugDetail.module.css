@@ -19,6 +19,13 @@
     flex-direction: row;
     justify-content: space-evenly;
     align-items: center;
+
+    @media (max-width: 1100px) {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: center;
+      }
 }
 .dataContain2{
     display: flex;
@@ -38,6 +45,13 @@
     justify-content: space-evenly;
     align-items: center;
     margin-left: 10px;
+
+    @media (max-width: 1100px) {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: center;
+      }
 }
 
 .flyCardFinal{
@@ -46,7 +60,7 @@
     justify-content: space-evenly;
     align-items: center; */
     margin-bottom: 10px;
-    margin-left: 5px;
+    margin-left: 
 }
 
 .finalImg{
@@ -89,7 +103,19 @@
 .separator{
     background-color: black;
     margin-left: 10px;
-    margin-top: 20px;
+    margin-top: 105px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: baseline;
+
+    @media (max-width: 1100px) {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        align-items: center;
+        margin-top: 5px;
+    }
 }
 
 .findAnother{

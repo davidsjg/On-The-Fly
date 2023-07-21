@@ -42,6 +42,13 @@
   background-image: url("https://images.freeimages.com/images/large-previews/abd/blurry-background-1638609.jpg");
   background-position: center;
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: 100% 100%;
+  width: 100%;
   margin-top: -20px;
+  min-width: 800px;
+  height: 2400px;
+
+  @media (max-width: 500px) {
+
+  }
 }
