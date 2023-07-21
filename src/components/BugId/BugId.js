@@ -380,6 +380,14 @@ return  (
 
 
 <div className={styles["mainContain"]}>
+    <div className={styles["description"]}>
+        <p>
+            Have you seen a bug by the river?  Ever wonder what it might be?
+        </p>
+        <p>
+            Answer the questions to the prompts below and see if you can identify it!
+        </p>
+    </div>
     {/* {buttonState ? (
            <Wrap onClick={resetData} className={styles["resetBut"]} >
            <p>

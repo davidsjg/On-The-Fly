@@ -71,6 +71,7 @@
     display: flex; /*Make sure to call this on your container*/
     align-items: stretch; /*stretches all cards same height*/
     justify-content: space-around; /*some space between cards*/
+    margin-top: 0px !important;
 }
 
 .finalName{
@@ -125,4 +126,22 @@
 
 .restBut{
 
+}
+
+.description{
+    /* background-color: #5cb9ff; */
+    background-color: darkgreen;
+    color: white;
+    width: 570px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    border-radius: 20px;
+
+}
+
+.description p {
+    margin: 5px;
 }
