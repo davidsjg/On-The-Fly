@@ -31,6 +31,15 @@
     box-shadow: 0 5px 4px rgba(0, 0, 0, 0.4);
     border-radius: 2px;
     border: 1px solid black;
+
+  @media (max-width: 850px) {
+    width: 745px;
+    min-width: none;
+  }
+  @media (max-width: 400px) {
+    width: 780px;
+    min-width: none;
+  }
   }
 
 .spanStyle {
