@@ -2,11 +2,13 @@
   "resourceName": "imagestore",
   "policyUUID": "49bef16e",
   "bucketName": "onthefly989b9bc7337d47018eb4aafe54d977c1",
-  "storageAccess": "auth",
-  "guestAccess": [],
+  "storageAccess": "authAndGuest",
+  "guestAccess": [
+    "READ"
+  ],
   "authAccess": [
-    "CREATE_AND_UPDATE",
     "READ",
+    "CREATE_AND_UPDATE",
     "DELETE"
   ],
   "triggerFunction": "NONE",

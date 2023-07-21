@@ -6,6 +6,7 @@ import {BrowserRouter as Router} from 'react-router-dom'
 import reportWebVitals from './reportWebVitals';
 import { Amplify } from 'aws-amplify';
 import config from './aws-exports';
+import App2 from './App2';
 Amplify.configure(config);
 
 
@@ -13,7 +14,8 @@ Amplify.configure(config);
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <Router>
-      <App />
+      {/* <App /> */}
+      <App2/>
   </Router>
 );
 
