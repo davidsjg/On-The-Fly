@@ -15,8 +15,8 @@
 
 .mainContain {
     /* background-image: url("https://i.imgur.com/F8rM7TJ.jpg"); */
-    background-image: url("https://i.imgur.com/iaFJi1s.jpg");
-    background-image: url("https://i.imgur.com/Uhdr7Cr.png");
+    /* background-image: url("https://i.imgur.com/iaFJi1s.jpg");
+    background-image: url("https://i.imgur.com/Uhdr7Cr.png"); */
     /* background-image: url("https://i.imgur.com/cWtZuYM.png"); */
     background-image: url("https://i.imgur.com/4TtIG9k.png");
     /* opacity: 0.75; */
@@ -37,29 +37,12 @@
     min-width: none;
   }
   @media (max-width: 400px) {
-    width: 780px;
-    min-width: none;
+    margin-top: 25px;
+    max-width: 175px;
+    background-image: none;
+    box-shadow: none;
+    border: none;
   }
-  }
-
-.spanStyle {
-    color: black;
-    text-decoration: none;
-    font-size: larger;
-    font-weight: 700;
-    background-color: #eb97a9;
-    border-radius: 10px;
-    padding: 15px;
-}
-
-.leftHeader {
-    flex: 0.2;
-    text-align: center;
-  }
-  
-  .leftLink i {
-    color: black;
-    size-adjust: 120%;
   }
 
   .centerHeader {
@@ -71,34 +54,17 @@
     text-decoration: none;
     color: black;
   }
-
-  .rightHeader {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    flex: 0.2;
-    text-align: center;
-  }
   
-  .rightHeader a {
-    text-decoration: none;
-    color: black;
-  }
-  
-  .otf{
-    width: fit-content;
-    background-color: white;
-    text-align: center;
-    font-size: xx-large;
-    padding: 10px;
-    border-radius: 10px;
-  }
-
   .otfImage{
     width: 200px;
     border-radius: 40px;
     box-shadow: rgb(0 0 0 / 12%) 0px 26px 30px -10px,
     rgb(0 0 0 / 73%) 0px 16px 10px -10px;
+
+    @media (max-width: 400px) {
+      width: 180px;
+
+  
+    }
     
   }

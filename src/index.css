@@ -16,11 +16,17 @@ code {
   font-size: x-large;
   /* margin-top: 20px;
   margin-bottom: 20px; */
-  margin: 20px 0;
+  margin: 20px 0px;
   border-radius: 5px;
   transition: 120ms;
   background-color: white;
   padding: 20px 20px;
+  @media (max-width: 500px) {
+    margin-left: 35px;
+    font-size: large;
+    text-align: center;
+  }
+  
 }
 
 .class2{
