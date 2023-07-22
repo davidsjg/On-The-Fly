@@ -5,7 +5,7 @@
     align-items: center;
     /* height: 1000px; */
     margin-top: -40px;
-
+    /* margin-bottom: auto; */
 
     @media (max-width: 850px) {
         width: 800px
