@@ -196,6 +196,7 @@
     /* width: 600px; */
     padding: 0px 20px;
     min-width: 600px;
+    margin-left: 0px;
 
     @media (max-width: 700px) {
         margin-top: 20px;
