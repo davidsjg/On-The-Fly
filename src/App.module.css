@@ -40,13 +40,18 @@
 
 .appContain{
   background-image: url("https://images.freeimages.com/images/large-previews/abd/blurry-background-1638609.jpg");
-  background-position:center;
+  /* background-position:center;
   background-repeat: no-repeat;
+  background-size: cover; */
+  background-attachment: fixed;
   background-size: cover;
-  width: 100%;
+  background-repeat: no-repeat;
+  /* width: 100%; */
   margin-top: -20px;
   min-width: 800px;
-  height: 2900px;
+  /* height: 2900px; */
+  width: 100%;
+  /* height: 100vh; */
 
   @media (max-width: 900px) {
     /* min-width: 200px; */
