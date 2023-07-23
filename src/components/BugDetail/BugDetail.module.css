@@ -44,7 +44,6 @@
     flex-direction: row;
     justify-content: space-evenly;
     align-items: center;
-    margin-left: 10px;
 
     @media (max-width: 1100px) {
         display: flex;
@@ -60,7 +59,7 @@
     justify-content: space-evenly;
     align-items: center; */
     margin-bottom: 10px;
-    margin-left: 
+    margin-left: 10px;
 }
 
 .finalImg{
