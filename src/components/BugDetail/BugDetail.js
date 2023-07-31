@@ -8,6 +8,7 @@ import {
     Card
   } from '@aws-amplify/ui-react';
 import styled from "styled-components";
+import dbFlies from '../../utils/flies';
 
 
 function BugDetail() {
@@ -26,17 +27,17 @@ function BugDetail() {
     }, []);
     
     async function fetchFlies() {
-        const apiData = await API.graphql({ query: listNotes });
-        const fliesFromAPI = apiData.data.listNotes.items;
-        await Promise.all(
-          fliesFromAPI.map(async (note) => {
-            if (note.image) {
-              const url = await Storage.get(note.name);
-              note.image = url;
-            }
-            return note;
-          })
-        );
+        //const apiData = await API.graphql({ query: listNotes });
+        // await Promise.all(
+        //   fliesFromAPI.map(async (note) => {
+        //     if (note.image) {
+        //       const url = await Storage.get(note.name);
+        //       note.image = url;
+        //     }
+        //     return note;
+        //   })
+        // );
+        const fliesFromAPI = dbFlies
 
         const finalFly = fliesFromAPI.filter((fly) => fly.id === result)
         console.log(finalFly);

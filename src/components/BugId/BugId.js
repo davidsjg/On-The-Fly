@@ -16,14 +16,12 @@ import {
 import Question from '../Question/Question';
 import ButtonAnswer from '../ButtonAnswer/ButtonAnswer';
 import styled from "styled-components";
-import WrapComp from '../WrapComp/WrapComp';
-import Header from '../Header/Header';
-
+import dbFlies from '../../utils/flies';
 
 function BugId() {
 
 const [counter, setCounter] = useState(0);
-const [flies,    setFlies] = useState();
+const [flies, setFlies] = useState(dbFlies);
 const [fliesAbove, setFliesAbove] = useState();
 const [fliesBelow, setFliesBelow] = useState();
 const [buttonState, setButtonState] = useState(false);
@@ -31,15 +29,18 @@ const [buttonState, setButtonState] = useState(false);
 
 const [flyData, setFlyData] = useState({ imitates: '', above: '', wingsOut : false, flat: false, wingsDesc: '', overBack : false, tented : false, upright: false, legs : '', joints : '', tail : '', antennae : ''  });
 
+
 useEffect(() => {
-    fetchFlies();
+  // fetchFlies();
+    // setFlies(dbFlies);
+    setData();
     calcImitate();
     calcFlies();
+    console.log(flies);
 }, []);
 
 
 useEffect(() => {
-    setData();
     calcFlies();
 }, [flyData]);
 
@@ -51,7 +52,9 @@ useEffect(() => {
 
 
 function calcImitate(){
-    flies && flies.map((fly) => {
+    console.log(fliesAbove);
+    console.log(fliesBelow);
+    flies.map((fly) => {
         // console.log(fly)
         if(fly.imitates){
             setFlyData({
@@ -63,16 +66,19 @@ function calcImitate(){
 }
 
 function calcFlies(){
+    console.log(flies);
+    console.log(flyData);
     //have all the flies
     //have a fly to compare it against
 
 
     // flies && flies.map((fly) => {
     // })
-
+    
 
     if(flyData.above) {
-        const newFlies = flies.filter((fly) => fly && fly.above === true);
+
+        const newFlies = flies.filter((fly) => fly.above === true);
         setFlies(newFlies);
             if(flyData.wingsOut){
         const newFlies2 = flies.filter((fly) => fly.wingsOut === true);
@@ -93,7 +99,7 @@ function calcFlies(){
         setFlies(newFlies2);
     } 
     if (flyData.tented === true){
-        const newFlies2 = flies.filter((fly) => fly.wingsDesc === 'tented');
+        const newFlies2 = flies && flies.filter((fly) => fly.wingsDesc === 'tented');
         setFlies(newFlies2);
     }
     }  
@@ -114,9 +120,6 @@ function calcFlies(){
         const newFlies5 = flies && flies.filter((fly) => fly.legsJointed === false);
         setFlies(newFlies5);  
     }
-
-    console.log(flies);
-    console.log(flyData);
 
     if (flyData.tail === true){
         console.log('fly tail = true')
@@ -157,7 +160,7 @@ function calcFlies(){
         setFlies(newFlies5);        
     }
 
-
+    
 
 
  
@@ -166,28 +169,28 @@ function calcFlies(){
 
 }
 
-async function fetchFlies() {
-    const apiData = await API.graphql({ query: listNotes });
-    const fliesFromAPI = apiData.data.listNotes.items;
-    await Promise.all(
-      fliesFromAPI.map(async (note) => {
-        if (note.image) {
-          const url = await Storage.get(note.name);
-          note.image = url;
-        }
-        return note;
-      })
-    );
+// async function fetchFlies() {
+//     const apiData = await API.graphql({ query: listNotes });
+//     const fliesFromAPI = apiData.data.listNotes.items;
+//     await Promise.all(
+//       fliesFromAPI.map(async (note) => {
+//         if (note.image) {
+//           const url = await Storage.get(note.name);
+//           note.image = url;
+//         }
+//         return note;
+//       })
+//     );
 
-    const finalFlies = fliesFromAPI.filter((fly) => fly.imitates === "")
-    const aboveFlies = finalFlies.filter((fly) => fly.above === true)
-    const belowFlies = finalFlies.filter((fly) => fly.above !== true)
+//     const finalFlies = fliesFromAPI.filter((fly) => fly.imitates === "")
+//     const aboveFlies = finalFlies.filter((fly) => fly.above === true)
+//     const belowFlies = finalFlies.filter((fly) => fly.above !== true)
 
-    setFliesAbove(aboveFlies);
-    setFliesBelow(belowFlies);
+//     setFliesAbove(aboveFlies);
+//     setFliesBelow(belowFlies);
 
-    setFlies(finalFlies);
-  }
+//     setFlies(finalFlies);
+//   }
 
   function updateCounter(e){
     if(e === 'but1'){
@@ -201,7 +204,14 @@ async function fetchFlies() {
 
   function setData(){
 
-     conIt(flyData);
+    const finalFlies = dbFlies.filter((fly) => fly.imitates === null)
+    const aboveFlies = finalFlies.filter((fly) => fly.above === true)
+    const belowFlies = finalFlies.filter((fly) => fly.above === false)
+
+    setFliesAbove(aboveFlies);
+    setFliesBelow(belowFlies);
+
+    setFlies(finalFlies);
 
   }
 
@@ -369,7 +379,7 @@ async function fetchFlies() {
     const blankDataObj = { imitates: '', above: '', wingsOut : false, flat: false, wingsDesc: '', overBack : false, tented : false, upright: false, legs : '', joints : '', tail : '', antennae : ''  }
     setCounter(0);
     setFlyData(blankDataObj);
-    fetchFlies();
+   // fetchFlies();
   }
 
   //if bugsArray state = 100, show all the flies with imitates != null

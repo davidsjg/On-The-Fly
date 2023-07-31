@@ -17,15 +17,17 @@ import {
   deleteNote as deleteFlyMutation,
 } from "../../graphql/mutations";
 import { CheckboxField, Radio, RadioGroupField } from "@aws-amplify/ui-react";
-
+import dbFlies from '../../utils/flies';
 
 function CreateFly () {
   const [flies, setFlies] = useState([]);
   const [flyData, setFlyData] = useState({ above: '', legs : '', joints : '', tail : '', antennae : '', wingsOut : '' });
+  console.log(dbFlies);
 
 
   useEffect(() => {
-    fetchFlies();
+    //fetchFlies();
+    setFlies(dbFlies);
   }, []);
 
   async function fetchFlies() {
