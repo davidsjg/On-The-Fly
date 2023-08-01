@@ -113,7 +113,7 @@ return  (
                         Wing Orientation : {finalWingDesc} 
                         </div>   
                     }
-                    {finalFly &&
+                    {finalFly && finalFly.winsOut &&
                         <div as="strong" fontWeight={700} >
                         Wings out : {finalWing} 
                         </div>   
@@ -142,7 +142,6 @@ return  (
             - <br/>
             - <br/> */}
 
-            <break>-</break>
             <break>-</break>
             <break>-</break>
             <break>-</break>
@@ -202,8 +201,8 @@ return  (
         </div>
     </div>
 
-    <Link to='/' style={{ textDecoration: 'none' }}>
-    <Wrap>
+    <Link to='/' style={{ textDecoration: 'none' }} >
+    <Wrap className={styles["findAnother"]}>
         <p>
         Find Another Bug!
         </p>

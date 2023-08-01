@@ -91,7 +91,8 @@
     font-size: x-large;
     /* margin-top: 20px;
     margin-bottom: 20px; */
-    margin: 20px 0;
+
+    margin-bottom: 5px;
     border-radius: 5px;
     transition: 120ms;
     background-color: white;
@@ -102,7 +103,7 @@
 .separator{
     background-color: black;
     margin-left: 10px;
-    margin-top: 105px;
+    margin-top: 80px;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -118,10 +119,11 @@
 }
 
 .findAnother{
-    margin-top: 20px;
+    /* margin-top: 20px; */
     height: 150px;
     width: 250px;
     font-size: x-large;
+    /* margin-top: 10px !important; */
 }
 
 .findAnother:hover{

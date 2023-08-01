@@ -19,6 +19,19 @@ import electric from './electric caddis.jpeg'
 import elkHair from './elk hair caddis.webp'
 import kryptonite from './kryptonite caddis.jpeg'
 import mercCaddis from './mercury cased caddis.jpeg'
+import barrs from './barrs emerger.jpeg'
+import bwoSpin from './bwo spinner.jpeg'
+import juju from './juju baetis.jpeg'
+import parachute from './parachute adams.jpeg'
+import rs2 from './rs2.jpeg'
+import patsRubber from './pats rubber legs.jpeg'
+import beadHead from './bead head prince nymph.jpeg'
+import copperJ from './copper john.jpeg'
+import goldenStone from './golden stone.png'
+import damsel from './damsel fly.jpeg'
+import mosquito from './mosquito.webp'
+import gutsack from './gutsack.webp'
+
 
 const flies = [
     {
@@ -207,7 +220,7 @@ const flies = [
     "above": false,
     "legs": true,
     "legsJointed": true,
-    "tail": true,
+    "tail": false,
     "antennae": true,
     "wingsOut": null,
     "wingsDesc": null,
@@ -218,7 +231,7 @@ const flies = [
     },
     {
     "id": '014',
-    "name": 'Sowbug',
+    "name": 'Sow Bug Nymph',
     "above": false,
     "legs": true,
     "legsJointed": false,
@@ -335,7 +348,187 @@ const flies = [
     "image": elkHair,
     "size": '14-20',
     "category": 'Midge'
-    }
+    },
+    {
+    "id": '022',
+    "name": 'Juju Baetis',
+    "above": false,
+    "legs": true,
+    "legsJointed": true,
+    "tail": true,
+    "antennae": null,
+    "wingsOut": null,
+    "wingsDesc": null,
+    "imitates": 'Mayfly Nymph',
+    "image": juju,
+    "size": '16-24',
+    "category": 'Mayfly'
+    },
+    {
+    "id": '023',
+    "name": 'RS2',
+    "above": false,
+    "legs": true,
+    "legsJointed": true,
+    "tail": true,
+    "antennae": null,
+    "wingsOut": null,
+    "wingsDesc": null,
+    "imitates": 'Mayfly Emerger',
+    "image": rs2,
+    "size": '16-24',
+    "category": 'Mayfly'
+    },
+    {
+    "id": '024',
+    "name": 'Barr\'s Emerger',
+    "above": false,
+    "legs": true,
+    "legsJointed": true,
+    "tail": true,
+    "antennae": null,
+    "wingsOut": null,
+    "wingsDesc": null,
+    "imitates": 'Mayfly Emerger',
+    "image": barrs,
+    "size": '16-24',
+    "category": 'Mayfly'
+    },
+    {
+    "id": '025',
+    "name": 'BWO Spinner',
+    "above": true,
+    "legs": null,
+    "legsJointed": null,
+    "tail": null,
+    "antennae": null,
+    "wingsOut": true,
+    "wingsDesc": null,
+    "imitates": 'Mayfly Spinner',
+    "image": bwoSpin,
+    "size": '16-24',
+    "category": 'Mayfly'
+    },
+    {
+    "id": '026',
+    "name": 'Parachute Adams',
+    "above": true,
+    "legs": null,
+    "legsJointed": null,
+    "tail": null,
+    "antennae": null,
+    "wingsOut": null,
+    "wingsDesc": 'tented',
+    "imitates": 'Mayfly Dry',
+    "image": parachute,
+    "size": '14-20',
+    "category": 'Mayfly'
+    },
+    {
+    "id": '027',
+    "name": 'Pat\'s Rubber Legs',
+    "above": false,
+    "legs": true,
+    "legsJointed": true,
+    "tail": true,
+    "antennae": true,
+    "wingsOut": null,
+    "wingsDesc": null,
+    "imitates": 'Stonefly Nymph',
+    "image": patsRubber,
+    "size": '8-16',
+    "category": 'Stonefly'
+    },
+    {
+    "id": '028',
+    "name": 'Bead Head Prince Nymph',
+    "above": false,
+    "legs": true,
+    "legsJointed": true,
+    "tail": true,
+    "antennae": true,
+    "wingsOut": null,
+    "wingsDesc": null,
+    "imitates": 'Stonefly Nymph',
+    "image": beadHead,
+    "size": '8-16',
+    "category": 'Stonefly'
+    },
+    {
+    "id": '029',
+    "name": 'Copper John',
+    "above": false,
+    "legs": true,
+    "legsJointed": true,
+    "tail": true,
+    "antennae": true,
+    "wingsOut": null,
+    "wingsDesc": null,
+    "imitates": 'Stonefly Nymph',
+    "image": copperJ,
+    "size": '8-16',
+    "category": 'Stonefly'
+    },
+    {
+    "id": '029',
+    "name": 'Golden Stone',
+    "above": false,
+    "legs": true,
+    "legsJointed": true,
+    "tail": true,
+    "antennae": true,
+    "wingsOut": null,
+    "wingsDesc": null,
+    "imitates": 'Stonefly Dry',
+    "image": goldenStone,
+    "size": '8-16',
+    "category": 'Stonefly'
+    },
+    {
+    "id": '030',
+    "name": 'Gut Sack Sow Bug',
+    "above": false,
+    "legs": true,
+    "legsJointed": false,
+    "tail": true,
+    "antennae": null,
+    "wingsOut": null,
+    "wingsDesc": null,
+    "imitates": 'Sow Bug Nymph',
+    "image": gutsack,
+    "size": null,
+    "category": 'n/a'
+    },
+    {
+    "id": '031',
+    "name": 'Damsel Fly',
+    "above": false,
+    "legs": true,
+    "legsJointed": true,
+    "tail": false,
+    "antennae": null,
+    "wingsOut": null,
+    "wingsDesc": null,
+    "imitates": 'Dragonfly Nymph',
+    "image": damsel,
+    "size": '12-18',
+    "category": 'n/a'
+    },        
+    {
+    "id": '032',
+    "name": 'Mosquito',
+    "above": true,
+    "legs": null,
+    "legsJointed": null,
+    "tail": null,
+    "antennae": null,
+    "wingsOut": null,
+    "wingsDesc": 'tented',
+    "imitates": 'Midge Dry',
+    "image": mosquito,
+    "size": '18-24',
+    "category": 'Midge'
+    },        
 ]
 
 export default flies;
