@@ -1,8 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, Fragment } from 'react';
 import styles from "./BugDetail.module.css";
 import { useLocation, Link } from "react-router-dom";
-import { listNotes } from '../../graphql/queries';
-import { API, Storage } from 'aws-amplify';
 import {
     Image,
     Card
@@ -161,37 +159,35 @@ return  (
                     Flies to Use
             </div>
             <div className={styles["otherFlies"]}>
-            {otherFlies && 
-                otherFlies.map((fly) => {
-                    return(
-                        (
-                            <>
-                            <Card className={styles["flyCardFinal"]} >
-                                <div className={styles["leftData"]}>
-                                    <Image
-                                        src={fly.image}
-                                        alt={`visual aid for ${fly && fly.name}`}
-                                        className={styles["finalImg"]}
-                                    />       
-                                    <div>
-                                        Name: {fly.name}
+                {otherFlies && 
+                    otherFlies.map(fly => (
+                            
+                            <Fragment key={fly.id}>
+                                <Card className={styles["flyCardFinal"]} >
+                                    <div className={styles["leftData"]}>
+                                        <Image
+                                            src={fly.image}
+                                            alt={`visual aid for ${fly && fly.name}`}
+                                            className={styles["finalImg"]}
+                                        />       
+                                        <div>
+                                            Name: {fly.name}
+                                        </div>
+                                        <div>
+                                            Category: {fly.category}
+                                        </div>
+                                        <div>
+                                            Imitates: {fly.imitates}
+                                        </div>
+                                        <div>
+                                            Size: {fly.size}
+                                        </div>
                                     </div>
-                                    <div>
-                                        Category: {fly.category}
-                                    </div>
-                                    <div>
-                                        Imitates: {fly.imitates}
-                                    </div>
-                                    <div>
-                                        Size: {fly.size}
-                                    </div>
-                                </div>
-                            </Card>
-                        </>
-                        )
-                    )
-                })
-            }                     
+                                </Card>
+                            </Fragment>
+                            
+                    ))
+                }                     
             </div>
                        
 

@@ -1,8 +1,17 @@
-import React, {useEffect, useState} from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import React, {useEffect, useState, useSearchParams} from 'react';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import styles from "./Header.module.css";
 
 function Header() {
+
+    const location = useLocation()
+    const curUrl = location.pathname;
+    let result = curUrl.replace(/\/bugDetail\//i, "");
+    console.log(result);
+
+    let urlNum = Number(result);
+
+
 
     const navigate = useNavigate();
 
@@ -15,9 +24,12 @@ function Header() {
 
 
     function pageReload() {
-        setGoHome(!goHome);
-        // navigate('/');
-       // window.location.reload(false); 
+       // setGoHome(!goHome);
+       if(result > 0){
+            navigate('/');
+       } else {
+        window.location.reload(false); 
+       }
     }
 
 return  (

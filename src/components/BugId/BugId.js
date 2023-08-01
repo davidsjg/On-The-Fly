@@ -36,7 +36,6 @@ useEffect(() => {
     setData();
     calcImitate();
     calcFlies();
-    console.log(flies);
 }, []);
 
 
@@ -52,8 +51,7 @@ useEffect(() => {
 
 
 function calcImitate(){
-    console.log(fliesAbove);
-    console.log(fliesBelow);
+
     flies.map((fly) => {
         // console.log(fly)
         if(fly.imitates){
@@ -66,8 +64,7 @@ function calcImitate(){
 }
 
 function calcFlies(){
-    console.log(flies);
-    console.log(flyData);
+
     //have all the flies
     //have a fly to compare it against
 
@@ -131,9 +128,9 @@ function calcFlies(){
     } 
     if (flyData.tail === false){
         console.log('inside false')
-        console.log(flies);
+       // console.log(flies);
         const newFlies6 = flies && flies.filter((fly) => fly.tail !== true);
-        console.log(newFlies6);
+       // console.log(newFlies6);
         setFlies(newFlies6);     
         if(newFlies6.length === 1){
             setCounter(100);

@@ -31,6 +31,7 @@ import goldenStone from './golden stone.png'
 import damsel from './damsel fly.jpeg'
 import mosquito from './mosquito.webp'
 import gutsack from './gutsack.webp'
+import mayflyNymph from './mayfly nymph.jpeg'
 
 
 const flies = [
@@ -116,8 +117,8 @@ const flies = [
     "legs": true,
     "legsJointed": false,
     "tail": null,
-    "antennae": null,
-    "wingsOut": true,
+    "antennae": false,
+    "wingsOut": null,
     "wingsDesc": null,
     "imitates": null,
     "image": caddisCased,
@@ -131,7 +132,7 @@ const flies = [
     "legs": true,
     "legsJointed": false,
     "tail": null,
-    "antennae": null,
+    "antennae": false,
     "wingsOut": null,
     "wingsDesc": null,
     "imitates": null,
@@ -161,7 +162,7 @@ const flies = [
     "legs": true,
     "legsJointed": true,
     "tail": true,
-    "antennae": true,
+    "antennae": false,
     "wingsOut": null,
     "wingsDesc": null,
     "imitates": null,
@@ -465,12 +466,12 @@ const flies = [
     "wingsOut": null,
     "wingsDesc": null,
     "imitates": 'Stonefly Nymph',
-    "image": copperJ,
+    "image": copperJ    ,
     "size": '8-16',
     "category": 'Stonefly'
     },
     {
-    "id": '029',
+    "id": '030',
     "name": 'Golden Stone',
     "above": false,
     "legs": true,
@@ -485,7 +486,7 @@ const flies = [
     "category": 'Stonefly'
     },
     {
-    "id": '030',
+    "id": '031',
     "name": 'Gut Sack Sow Bug',
     "above": false,
     "legs": true,
@@ -500,13 +501,13 @@ const flies = [
     "category": 'n/a'
     },
     {
-    "id": '031',
+    "id": '032',
     "name": 'Damsel Fly',
     "above": false,
     "legs": true,
     "legsJointed": true,
-    "tail": false,
-    "antennae": null,
+    "tail": true,
+    "antennae": true,
     "wingsOut": null,
     "wingsDesc": null,
     "imitates": 'Dragonfly Nymph',
@@ -515,7 +516,7 @@ const flies = [
     "category": 'n/a'
     },        
     {
-    "id": '032',
+    "id": '033',
     "name": 'Mosquito',
     "above": true,
     "legs": null,
@@ -528,6 +529,21 @@ const flies = [
     "image": mosquito,
     "size": '18-24',
     "category": 'Midge'
+    },        
+    {
+    "id": '034',
+    "name": 'Mayfly Nymph',
+    "above": false,
+    "legs": true,
+    "legsJointed": true,
+    "tail": true,
+    "antennae": false,
+    "wingsOut": null,
+    "wingsDesc": null,
+    "imitates": null,
+    "image": mayflyNymph,
+    "size": null,
+    "category": 'Mayfly'
     },        
 ]
 
