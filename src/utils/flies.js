@@ -12,6 +12,13 @@ import midgeNymph from './midge nymph.jpeg'
 import stoneflyNymph from './stonefly nymph.jpeg'
 import dragonflyNymph from './Dragonfly Nymph.webp'
 import sowbugNymph from './sowbug.webp'
+import blackBeauty from './black beauty midge.jpeg'
+import bloodMidge from './blood midge.jpeg'
+import topSecret from './top secret midge.jpeg'
+import electric from './electric caddis.jpeg'
+import elkHair from './elk hair caddis.webp'
+import kryptonite from './kryptonite caddis.jpeg'
+import mercCaddis from './mercury cased caddis.jpeg'
 
 const flies = [
     {
@@ -222,6 +229,111 @@ const flies = [
     "imitates": null,
     "image": sowbugNymph,
     "size": null,
+    "category": 'Midge'
+    },
+    {
+    "id": '015',
+    "name": 'Blood Midge',
+    "above": false,
+    "legs": false,
+    "legsJointed": false,
+    "tail": false,
+    "antennae": null,
+    "wingsOut": null,
+    "wingsDesc": null,
+    "imitates": 'Midge Nymph',
+    "image": bloodMidge,
+    "size": '18-22',
+    "category": 'Midge'
+    },
+    {
+    "id": '016',
+    "name": 'Black Beauty Midge',
+    "above": false,
+    "legs": false,
+    "legsJointed": false,
+    "tail": false,
+    "antennae": null,
+    "wingsOut": null,
+    "wingsDesc": null,
+    "imitates": 'Midge Nymph',
+    "image": blackBeauty,
+    "size": '18-22',
+    "category": 'Midge'
+    },
+    {
+    "id": '017',
+    "name": 'Top Secret Midge',
+    "above": false,
+    "legs": false,
+    "legsJointed": false,
+    "tail": false,
+    "antennae": null,
+    "wingsOut": null,
+    "wingsDesc": null,
+    "imitates": 'Midge Emerger',
+    "image": topSecret,
+    "size": '18-22',
+    "category": 'Midge'
+    },
+    {
+    "id": '018',
+    "name": 'Electric Caddis',
+    "above": false,
+    "legs": true,
+    "legsJointed": false,
+    "tail": false,
+    "antennae": null,
+    "wingsOut": null,
+    "wingsDesc": null,
+    "imitates": 'Caddis Freeform',
+    "image": electric,
+    "size": '14-22',
+    "category": 'Midge'
+    },
+    {
+    "id": '019',
+    "name": 'Kryptonite Caddis',
+    "above": false,
+    "legs": true,
+    "legsJointed": false,
+    "tail": false,
+    "antennae": true,
+    "wingsOut": null,
+    "wingsDesc": null,
+    "imitates": 'Caddis Emerger',
+    "image": kryptonite,
+    "size": '14-20',
+    "category": 'Midge'
+    },
+    {
+    "id": '020',
+    "name": 'Mercury Cased Caddis',
+    "above": false,
+    "legs": true,
+    "legsJointed": false,
+    "tail": false,
+    "antennae": true,
+    "wingsOut": null,
+    "wingsDesc": null,
+    "imitates": 'Caddis Cased',
+    "image": mercCaddis,
+    "size": '14-18',
+    "category": 'Midge'
+    },
+    {
+    "id": '021',
+    "name": 'Elk Hair Caddis',
+    "above": true,
+    "legs": null,
+    "legsJointed": null,
+    "tail": null,
+    "antennae": null,
+    "wingsOut": null,
+    "wingsDesc": 'tented',
+    "imitates": 'Caddis Dry',
+    "image": elkHair,
+    "size": '14-20',
     "category": 'Midge'
     }
 ]
