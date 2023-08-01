@@ -379,6 +379,7 @@ function calcFlies(){
     const blankDataObj = { imitates: '', above: '', wingsOut : false, flat: false, wingsDesc: '', overBack : false, tented : false, upright: false, legs : '', joints : '', tail : '', antennae : ''  }
     setCounter(0);
     setFlyData(blankDataObj);
+    setData();
    // fetchFlies();
   }
 
