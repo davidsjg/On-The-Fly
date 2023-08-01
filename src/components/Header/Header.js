@@ -25,7 +25,7 @@ function Header() {
 
     function pageReload() {
        // setGoHome(!goHome);
-       if(result > 0){
+       if(result !== '/'){
             navigate('/');
        } else {
         window.location.reload(false); 
